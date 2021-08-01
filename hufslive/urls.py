@@ -15,7 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+import community.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('',community.views.home, name="home"),
+    path('post/<int:post_id>', community.views.detail, name="detail")
 ]
