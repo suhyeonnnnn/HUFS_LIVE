@@ -21,5 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',community.views.home, name="home"),
     path('post/<int:post_id>', community.views.detail, name="detail"),
+    path('post/new/', community.views.new, name="new"),
+    path('post/create/', community.views.create, name="create"),
     path('accounts/', include('allauth.urls')),
 ]
