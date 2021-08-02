@@ -4,4 +4,18 @@
 <p>날짜: {{post.pub_date}}</p>
 <p>자세한 본문: {{post.body}}</p>
 
+<!--post_detail이란 게시글을 참조하는 코멘트 집합 전체를 순회하도록 만들자-->
+{% for comment in post_detail.comment_set.all %}
+    <p> {{ comment }} </p>
+    <p> {{ comment.date }} </p> <!-- models.py > Comment 클래스 > date 변수 -->
+    <hr>
+{% endfor %}
+
+<!--댓글-->
+<form method="POST" action="{% url 'new_comment' post_detail.id %}">
+    {% csrf_token %}
+    {{ comment_form  }}
+    <input type="submit" value="댓글 입력">
+</form>
+
 <a href="{%url 'home'%}">홈으로</a> 
