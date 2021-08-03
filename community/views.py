@@ -36,3 +36,14 @@ def new_comment(request, post_id) :
         # 저장한다.
         finished_form.save()
     return redirect('detail', post_id) # 댓글작성한 상세페이지로 이동
+
+
+# update
+def update(request, post_id):
+    post = Post.objects.get(id = post_id)
+    if request.method == "POST":
+        post.title = request.POST["title"]
+        post.body = request.POST["body"]
+        post.save()
+        return redirect('detail', post.id)
+    return render(request, 'update.html', {'post_detail': post})
