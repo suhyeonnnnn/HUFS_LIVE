@@ -15,8 +15,32 @@ def detail(request, post_id):
     comment_form = CommentForm()
     return render(request, 'detail.html', {'post_detail':post_detail, 'comment_form':comment_form}) 
 
+def detail_pr(request, pr_id):
+    pr_detail = get_object_or_404(Pr, pk= pr_id)
+
+    return render(request, 'pr_detail.html', {'pr':pr_detail})
+
+def detail_information(request, information_id):
+    information_detail = get_object_or_404(Information, pk= information_id)
+
+    return render(request, 'information_detail.html', {'information':information_detail})
+
+def detail_graduate(request, graduate_id):
+    graduate_detail = get_object_or_404(Graduate, pk= graduate_id)
+
+    return render(request, 'graduate_detail.html', {'graduate':graduate_detail})
+
 def new(request):
     return render(request, 'new.html')
+
+def pr_new(request):
+    return render(request, 'pr_new.html')
+
+def information_new(request):
+    return render(request, 'information_new.html')
+
+def graduate_new(request):
+    return render(request, 'graduate_new.html')
 
 def create(request): #new.html의 form에서 입력받은 내용을 DB로 넣어주는 함수
     community = Post()
@@ -25,6 +49,30 @@ def create(request): #new.html의 form에서 입력받은 내용을 DB로 넣어
     community.pub_date = timezone.datetime.now()
     community.save() #객체에 해당하는 내용들을 /admin 에 저장
     return redirect('/post/'+str(community.id)) #글 작성을 완료하면 해당 글 detail이 뜨도록
+
+def pr_create(request): 
+    community = Pr()
+    community.title = request.GET['title']
+    community.body = request.GET['body']
+    community.pub_date = timezone.datetime.now()
+    community.save() 
+    return redirect('/pr/'+str(community.id)) 
+
+def information_create(request): 
+    community = Information()
+    community.title = request.GET['title']
+    community.body = request.GET['body']
+    community.pub_date = timezone.datetime.now()
+    community.save() 
+    return redirect('/information/'+str(community.id)) 
+
+def graduate_create(request): 
+    community = Graduate()
+    community.title = request.GET['title']
+    community.body = request.GET['body']
+    community.pub_date = timezone.datetime.now()
+    community.save() 
+    return redirect('/graduate/'+str(community.id)) 
 
 # 댓글 저장
 def new_comment(request, post_id) : 
