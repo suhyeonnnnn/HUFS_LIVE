@@ -29,12 +29,23 @@
         {%endif%}
     </nav>
     
+    <br>
+    외부링크 모음 
+    <br>
+    <a href="https://www.hufs.ac.kr/" target="_blank">학교홈</a>
+    <a href="https://wis.hufs.ac.kr/src08/jsp/index.jsp" target="_blank">종정시</a>
+    <a href="https://eclass.hufs.ac.kr/ilos/main/main_form.acl" target="_blank">이클래스</a>
+    <a href="https://webs.hufs.ac.kr/jsp/HUFS/seb/listCourseCatalog.jsp?campusGb=H1" target="_blank">수강편람</a>
+    <a href="https://library.hufs.ac.kr/#/" target="_blank">도서관</a>
+    <a href="https://hufs.everytime.kr/" target="_blank">에브리타임</a>
+    <a href="https://wis.hufs.ac.kr/jsp/HUFS/cafeteria/frame_view.jsp" target="_blank">학식</a>
+
     <section>
         <div>
             {% for post in posts.all%}
-                <h1>{{post.title}}</h1>
+                <h1><a href="{% url 'detail' post.id%}">{{post.title}}</a></h1>
                 <p>{{post.pub_date}}</p>
-                <p>{{post.summary}} <a href="{% url 'detail' post.id%}">...more</a></p>
+                <p>{{post.summary}} </p>
                 <br><br>
             {%endfor%}
         </div>

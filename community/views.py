@@ -4,7 +4,7 @@ from .models import Post
 from .forms import PostForm, CommentForm #forms.py의 PostForm 객체 불러오기
 
 def home(request):
-    posts = Post.objects
+    posts = Post.objects.filter().order_by('pub_date') #date의 오름차순으로 정렬
     return render(request, 'home.html', {'posts':posts})
 
 def detail(request, post_id):
