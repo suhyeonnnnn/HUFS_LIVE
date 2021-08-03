@@ -1,5 +1,6 @@
 from django.db import models
 
+# 자유게시판
 class Post(models.Model):
     title = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published')
@@ -11,8 +12,43 @@ class Post(models.Model):
     def summary(self):
         return self.body[:100] # 본문 미리보기가 100글자 까지만 보이도록
 
+# 홍보게시판
+class Pr(models.Model):
+    title = models.CharField(max_length=200)
+    pub_date = models.DateTimeField('date published')
+    body = models.TextField()
 
-#댓글
+    def __str__(self):
+        return self.title # 글 제목이 타이틀로 보이도록
+    
+    def summary(self):
+        return self.body[:100] # 본문 미리보기가 100글자 까지만 보이도록
+
+# 정보게시판
+class Information(models.Model):
+    title = models.CharField(max_length=200)
+    pub_date = models.DateTimeField('date published')
+    body = models.TextField()
+
+    def __str__(self):
+        return self.title # 글 제목이 타이틀로 보이도록
+
+    def summary(self):
+        return self.body[:100] # 본문 미리보기가 100글자 까지만 보이도록
+
+#졸업생게시판
+class Graduate(models.Model):
+    title = models.CharField(max_length=200)
+    pub_date = models.DateTimeField('date published')
+    body = models.TextField()
+
+    def __str__(self):
+        return self.title # 글 제목이 타이틀로 보이도록
+
+    def summary(self):
+        return self.body[:100] # 본문 미리보기가 100글자 까지만 보이도록
+
+# 댓글
 class Comment(models.Model):
     comment = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
