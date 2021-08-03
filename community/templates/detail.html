@@ -1,11 +1,10 @@
 
 <h1>자세한 본문 내용입니다.</h1>
 <br><br>
-<h1>제목: {{post.title}}</h1>
-<p>날짜: {{post.pub_date}}</p>
-<p>자세한 본문: {{post.body}}</p>
-<p>조회수: {{post.update_counter}}</p>
-
+<h1>제목: {{post_detail.title}}</h1>
+<p>날짜: {{post_detail.pub_date}}</p>
+<p>자세한 본문: {{post_detail.body}}</p>
+<p>조회수: {{post_detail.update_counter}}</p>
 
 <!--post_detail이란 게시글을 참조하는 코멘트 집합 전체를 순회하도록 만들자-->
 {% for comment in post_detail.comment_set.all %}
