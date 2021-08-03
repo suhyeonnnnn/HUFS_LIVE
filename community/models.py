@@ -17,6 +17,7 @@ class Post(models.Model):
     def update_counter(self):
         self.hits = self.hits +1
         self.save()
+        return self.hits
         
 # 홍보게시판
 class Pr(models.Model):
