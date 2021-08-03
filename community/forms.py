@@ -8,7 +8,7 @@ from .models import Comment, Post #모델기반이므로
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = '__all__'
+        fields = ['title', 'body']
 
 
 #댓글 작성
