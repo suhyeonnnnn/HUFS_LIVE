@@ -26,4 +26,5 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('new_comment/<int:post_id>', community.views.new_comment, name='new_comment'),
     path('update/<int:post_id>', community.views.update, name='update'),
+    path('delete/<int:post_id>', community.views.delete, name='delete'),
 ]

@@ -47,3 +47,10 @@ def update(request, post_id):
         post.save()
         return redirect('detail', post.id)
     return render(request, 'update.html', {'post_detail': post})
+
+
+# delete
+def delete(request, post_id):
+    post = Post.objects.get(id = post_id)
+    post.delete()
+    return redirect("home")
