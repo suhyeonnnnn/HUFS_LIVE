@@ -4,11 +4,10 @@ from .models import Post, Pr, Information, Graduate
 from .forms import PostForm, CommentForm #forms.py의 PostForm 객체 불러오기
 
 def home(request):
-    posts = Post.objects
-    prs = Pr.objects
-    informations = Information.objects
-    graduates = Graduate.objects
-    
+    posts = Post.objects.filter().order_by('pub_date') #date의 오름차순으로 정렬
+    prs = Pr.objects.filter().order_by('pub_date')
+    informations = Information.objects.filter().order_by('pub_date')
+    graduates = Graduate.objects.filter().order_by('pub_date') 
     return render(request, 'home.html', {'posts':posts, 'prs':prs, 'informations':informations, 'graduates':graduates})
 
 def detail(request, post_id):
@@ -39,3 +38,21 @@ def new_comment(request, post_id) :
         # 저장한다.
         finished_form.save()
     return redirect('detail', post_id) # 댓글작성한 상세페이지로 이동
+
+
+# update
+def update(request, post_id):
+    post = Post.objects.get(id = post_id)
+    if request.method == "POST":
+        post.title = request.POST["title"]
+        post.body = request.POST["body"]
+        post.save()
+        return redirect('detail', post.id)
+    return render(request, 'update.html', {'post_detail': post})
+
+
+# delete
+def delete(request, post_id):
+    post = Post.objects.get(id = post_id)
+    post.delete()
+    return redirect("home")
