@@ -4,4 +4,6 @@
 <p>날짜: {{graduate.pub_date}}</p>
 <p>자세한 본문: {{graduate.body}}</p>
 
+<a href="{% url 'graduate_update' graduate.id %}">수정하기</a>
+<a href="{% url 'graduate_delete' graduate.id %}">삭제하기</a>
 <a href="{%url 'home'%}">홈으로</a> 

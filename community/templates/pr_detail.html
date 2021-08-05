@@ -4,4 +4,6 @@
 <p>날짜: {{pr.pub_date}}</p>
 <p>자세한 본문: {{pr.body}}</p>
 
+<a href="{% url 'pr_update' pr.id %}">수정하기</a>
+<a href="{% url 'pr_delete' pr.id %}">삭제하기</a>
 <a href="{%url 'home'%}">홈으로</a> 
