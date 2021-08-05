@@ -1,0 +1,7 @@
+<h4>정보 게시판</h4>
+<a href="{%url 'information_new'%}">정보게시판글쓰기</a> 
+{% for information in informations.all%}
+    <h1><a href="{% url 'information_detail' information.id%}">{{information.title}}</a></h1>
+    <p>{{information.pub_date}}</p>
+    <p>{{information.summary}}</p>
+{%endfor%}

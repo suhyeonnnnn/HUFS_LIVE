@@ -35,10 +35,10 @@
     </div>
     <div class="nav-bar">
         <nav>            
-            <a href="{%url 'new'%}">자유게시판글쓰기</a>
-            <a href="{%url 'pr_new'%}">홍보게시판글쓰기</a> 
-            <a href="{%url 'information_new'%}">정보게시판글쓰기</a> 
-            <a href="{%url 'graduate_new'%}">졸업생게시판글쓰기</a>  
+            <a href="{% url 'free_board' %}">자유 게시판</h4>
+            <a href="{% url 'pr_board' %}">홍보 게시판</a>
+            <a href="{% url 'information_board' %}">정보 게시판</a>
+            <a href="{% url 'graduate_board' %}">졸업생 게시판</a>
         </nav>
         <div class="hotlink">
             <br>
@@ -56,7 +56,8 @@
     <section>
         <div class="stat">
             <div class="board">
-                <h4>자유 게시판</h4>
+                <a href="{% url 'free_board' %}">자유 게시판</h4>
+                <a href="{%url 'new'%}">자유게시판글쓰기</a>
                 {% for post in posts.all%}
                     <h1><a href="{% url 'detail' post.id%}">{{post.title}}</a></h1>
                     <p>{{post.pub_date}}</p>
@@ -64,7 +65,8 @@
                 {%endfor%}
             </div>
             <div class="board">
-                <h4>홍보 게시판</h4>
+                <a href="{% url 'pr_board' %}">홍보 게시판</a>
+                <a href="{%url 'pr_new'%}">홍보게시판글쓰기</a> 
                 {% for pr in prs.all%}
                     <h1><a href="{% url 'pr_detail' pr.id%}">{{pr.title}}</a></h1>
                     <p>{{pr.pub_date}}</p>
@@ -74,7 +76,8 @@
         </div>
         <div class="stat">
             <div class="board">
-                <h4>정보 게시판</h4>
+                <a href="{% url 'information_board' %}">정보 게시판</a>
+                <a href="{%url 'information_new'%}">정보게시판글쓰기</a> 
                 {% for information in informations.all%}
                     <h1><a href="{% url 'information_detail' information.id%}">{{information.title}}</a></h1>
                     <p>{{information.pub_date}}</p>
@@ -82,7 +85,8 @@
                 {%endfor%}
             </div>
             <div class="board" >
-                <h4>졸업생 게시판</h4>
+                <a href="{% url 'graduate_board' %}">졸업생 게시판</a>
+                <a href="{%url 'graduate_new'%}">졸업생게시판글쓰기</a>  
                 {% for graduate in graduates.all%}
                     <h1><a href="{% url 'graduate_detail' graduate.id%}">{{graduate.title}}</a></h1>
                     <p>{{graduate.pub_date}}</p>

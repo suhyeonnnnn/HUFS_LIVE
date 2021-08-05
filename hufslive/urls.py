@@ -41,4 +41,10 @@ urlpatterns = [
     path('new_comment/<int:post_id>', community.views.new_comment, name='new_comment'),
     path('update/<int:post_id>', community.views.update, name='update'),
     path('delete/<int:post_id>', community.views.delete, name='delete'),
+
+    path('free/', community.views.free_board, name='free_board'),
+    path('pr/', community.views.pr_board, name='pr_board'),
+    path('information/', community.views.information_board, name='information_board'),
+    path('graduate/', community.views.graduate_board, name='graduate_board'), 
+    
 ]
