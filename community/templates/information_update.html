@@ -1,0 +1,11 @@
+<h1> 여기는 수정 페이지 </h1>
+<form action="{% url 'information_update' information.id %}" method = "POST">
+    {% csrf_token %}
+<h4>제목: </h4>
+<input type="text" name="title" value={{information.title}}>
+<br>
+<br>
+<h4>본문: </h4>
+<textarea name="body" cols="30" rows="10">{{information.body}}</textarea><br><br>
+<input type="submit" value="완료">
+</form>

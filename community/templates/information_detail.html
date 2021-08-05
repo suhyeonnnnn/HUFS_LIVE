@@ -4,4 +4,6 @@
 <p>날짜: {{information.pub_date}}</p>
 <p>자세한 본문: {{information.body}}</p>
 
+<a href="{% url 'information_update' information.id %}">수정하기</a>
+<a href="{% url 'information_delete' information.id %}">삭제하기</a>
 <a href="{%url 'home'%}">홈으로</a> 

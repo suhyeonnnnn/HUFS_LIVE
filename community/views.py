@@ -10,10 +10,11 @@ def home(request):
     graduates = Graduate.objects.filter().order_by('-pub_date')[:5] 
     return render(request, 'home.html', {'posts':posts, 'prs':prs, 'informations':informations, 'graduates':graduates})
 
+#상세 페이지
 def detail(request, post_id):
     post_detail = get_object_or_404(Post, pk= post_id)
     comment_form = CommentForm()
-    return render(request, 'detail.html', {'post_detail':post_detail, 'comment_form':comment_form}) 
+    return render(request, 'free_detail.html', {'post_detail':post_detail, 'comment_form':comment_form}) 
 
 def detail_pr(request, pr_id):
     pr_detail = get_object_or_404(Pr, pk= pr_id)
@@ -30,8 +31,9 @@ def detail_graduate(request, graduate_id):
 
     return render(request, 'graduate_detail.html', {'graduate':graduate_detail})
 
+#새로운 게시물 작성
 def new(request):
-    return render(request, 'new.html')
+    return render(request, 'free_new.html')
 
 def pr_new(request):
     return render(request, 'pr_new.html')
@@ -85,7 +87,7 @@ def new_comment(request, post_id) :
         finished_form.post = get_object_or_404(Post, pk=post_id)
         # 저장한다.
         finished_form.save()
-    return redirect('detail', post_id) # 댓글작성한 상세페이지로 이동
+    return redirect('free_detail', post_id) # 댓글작성한 상세페이지로 이동
 
 
 # update
@@ -95,8 +97,35 @@ def update(request, post_id):
         post.title = request.POST["title"]
         post.body = request.POST["body"]
         post.save()
-        return redirect('detail', post.id)
-    return render(request, 'update.html', {'post_detail': post})
+        return redirect('free_detail', post.id)
+    return render(request, 'free_update.html', {'post_detail': post})
+
+def pr_update(request, pr_id):
+    pr = Pr.objects.get(id = pr_id)
+    if request.method == "POST":
+        pr.title = request.POST["title"]
+        pr.body = request.POST["body"]
+        pr.save()
+        return redirect('pr_detail', pr.id)
+    return render(request, 'pr_update.html', {'pr': pr})
+
+def information_update(request, information_id):
+    information = Information.objects.get(id = information_id)
+    if request.method == "POST":
+        information.title = request.POST["title"]
+        information.body = request.POST["body"]
+        information.save()
+        return redirect('information_detail', information.id)
+    return render(request, 'information_update.html', {'information': information})
+
+def graduate_update(request, graduate_id):
+    graduate = Graduate.objects.get(id = graduate_id)
+    if request.method == "POST":
+        graduate.title = request.POST["title"]
+        graduate.body = request.POST["body"]
+        graduate.save()
+        return redirect('graduate_detail', graduate.id)
+    return render(request, 'graduate_update.html', {'graduate': graduate})
 
 
 # delete
@@ -104,6 +133,21 @@ def delete(request, post_id):
     post = Post.objects.get(id = post_id)
     post.delete()
     return redirect("home")
+
+def pr_delete(request, pr_id):
+    pr = Pr.objects.get(id = pr_id)
+    pr.delete()
+    return redirect('home')
+
+def information_delete(request, information_id):
+    information = Information.objects.get(id = information_id)
+    information.delete()
+    return redirect('home')
+    
+def graduate_delete(request, graduate_id):
+    graduate = Graduate.objects.get(id = graduate_id)
+    graduate.delete()
+    return redirect('home')
 
 
 #게시판
