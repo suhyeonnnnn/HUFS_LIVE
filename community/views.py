@@ -104,3 +104,21 @@ def delete(request, post_id):
     post = Post.objects.get(id = post_id)
     post.delete()
     return redirect("home")
+
+
+#게시판
+def free_board(request):
+    posts = Post.objects.filter().order_by('-pub_date')
+    return render(request, 'free_board.html', {'posts': posts})
+
+def pr_board(request):
+    prs = Pr.objects.filter().order_by('-pub_date')
+    return render(request, 'pr_board.html', {'prs': prs})
+
+def information_board(request):
+    informations = Information.objects.filter().order_by('-pub_date')
+    return render(request, 'information_board.html', {'informations':informations})
+
+def graduate_board(request):
+    graduates = Graduate.objects.filter().order_by('-pub_date')
+    return render(request, 'graduate_board.html', {'graduates':graduates})

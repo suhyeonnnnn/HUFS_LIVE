@@ -1,0 +1,7 @@
+<h4>졸업생 게시판</h4>
+<a href="{%url 'graduate_new'%}">졸업생게시판글쓰기</a>  
+{% for graduate in graduates.all%}
+    <h1><a href="{% url 'graduate_detail' graduate.id%}">{{graduate.title}}</a></h1>
+    <p>{{graduate.pub_date}}</p>
+    <p>{{graduate.summary}}</p>
+{%endfor%}
