@@ -1,5 +1,7 @@
-<h4>홍보 게시판</h4>
-<a href="{%url 'pr_new'%}">홍보게시판글쓰기</a> 
+<h1>홍보 게시판</h1>
+{% if user.is_authenticated %}
+<a href="{%url 'pr_new'%}">홍보게시판글쓰기</a>
+{% endif %}
 {% for pr in prs.all%}
     <h1><a href="{% url 'pr_detail' pr.id%}">{{pr.title}}</a></h1>
     <p>{{pr.pub_date}}</p>
