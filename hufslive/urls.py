@@ -21,12 +21,12 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',community.views.home, name="home"),
 
-    path('post/<int:post_id>', community.views.detail, name="detail"),
+    path('post/<int:post_id>', community.views.detail, name="free_detail"),
     path('pr/<int:pr_id>', community.views.detail_pr, name="pr_detail"),
     path('information/<int:information_id>', community.views.detail_information, name="information_detail"),
     path('graduate/<int:graduate_id>', community.views.detail_graduate, name="graduate_detail"),
 
-    path('post/new/', community.views.new, name="new"),
+    path('post/new/', community.views.new, name="free_new"),
     path('pr/new/', community.views.pr_new, name="pr_new"),
     path('information/new/', community.views.information_new, name="information_new"),
     path('graduate/new/', community.views.graduate_new, name="graduate_new"),
@@ -39,7 +39,7 @@ urlpatterns = [
 
     path('accounts/', include('allauth.urls')),
     path('new_comment/<int:post_id>', community.views.new_comment, name='new_comment'),
-    path('update/<int:post_id>', community.views.update, name='update'),
+    path('update/<int:post_id>', community.views.update, name='free_update'),
     path('delete/<int:post_id>', community.views.delete, name='delete'),
 
     path('free/', community.views.free_board, name='free_board'),

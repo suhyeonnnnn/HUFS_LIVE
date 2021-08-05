@@ -13,7 +13,7 @@ def home(request):
 def detail(request, post_id):
     post_detail = get_object_or_404(Post, pk= post_id)
     comment_form = CommentForm()
-    return render(request, 'detail.html', {'post_detail':post_detail, 'comment_form':comment_form}) 
+    return render(request, 'free_detail.html', {'post_detail':post_detail, 'comment_form':comment_form}) 
 
 def detail_pr(request, pr_id):
     pr_detail = get_object_or_404(Pr, pk= pr_id)
@@ -31,7 +31,7 @@ def detail_graduate(request, graduate_id):
     return render(request, 'graduate_detail.html', {'graduate':graduate_detail})
 
 def new(request):
-    return render(request, 'new.html')
+    return render(request, 'free_new.html')
 
 def pr_new(request):
     return render(request, 'pr_new.html')
@@ -85,7 +85,7 @@ def new_comment(request, post_id) :
         finished_form.post = get_object_or_404(Post, pk=post_id)
         # 저장한다.
         finished_form.save()
-    return redirect('detail', post_id) # 댓글작성한 상세페이지로 이동
+    return redirect('free_detail', post_id) # 댓글작성한 상세페이지로 이동
 
 
 # update
@@ -95,8 +95,8 @@ def update(request, post_id):
         post.title = request.POST["title"]
         post.body = request.POST["body"]
         post.save()
-        return redirect('detail', post.id)
-    return render(request, 'update.html', {'post_detail': post})
+        return redirect('free_detail', post.id)
+    return render(request, 'free_update.html', {'post_detail': post})
 
 
 # delete
