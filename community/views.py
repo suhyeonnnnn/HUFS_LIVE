@@ -4,10 +4,10 @@ from .models import Post, Pr, Information, Graduate
 from .forms import PostForm, CommentForm #forms.py의 PostForm 객체 불러오기
 
 def home(request):
-    posts = Post.objects.filter().order_by('pub_date') #date의 오름차순으로 정렬
-    prs = Pr.objects.filter().order_by('pub_date')
-    informations = Information.objects.filter().order_by('pub_date')
-    graduates = Graduate.objects.filter().order_by('pub_date') 
+    posts = Post.objects.filter().order_by('-pub_date') #date의 오름차순으로 정렬
+    prs = Pr.objects.filter().order_by('-pub_date')
+    informations = Information.objects.filter().order_by('-pub_date')
+    graduates = Graduate.objects.filter().order_by('-pub_date') 
     return render(request, 'home.html', {'posts':posts, 'prs':prs, 'informations':informations, 'graduates':graduates})
 
 def detail(request, post_id):
