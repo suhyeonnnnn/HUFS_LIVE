@@ -2,8 +2,25 @@
 {% if user.is_authenticated %}
 <a href="{%url 'free_new'%}">자유게시판글쓰기</a>
 {% endif %}
-{% for post in posts.all%}
+
+<div class="container">
+    {% for post in posts %}
     <h1><a href="{% url 'free_detail' post.id%}">{{post.title}}</a></h1>
     <p>{{post.pub_date}}</p>
     <p>{{post.summary}} </p>
-{%endfor%}
+    {%endfor%}
+</div>
+
+<div class="paginator">
+    {% if posts.has_previous %}
+    <a href="?page=1">처음</a>
+    <a href="?page={{posts.previous_page_number}}">이전</a>
+    {% endif %}
+    <span>{{posts.number}}</span>
+    <span>of</span>
+    <span>{{posts.paginator.num_pages}}</span>
+    {% if posts.has_next %}
+    <a href="?page={{posts.next_page_number}}">다음</a>
+    <a href="?page={{posts.paginator.num_pages}}">마지막</a>
+    {% endif %}
+  </div>

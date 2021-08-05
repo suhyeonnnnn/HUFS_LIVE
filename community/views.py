@@ -2,6 +2,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
 from .models import Post, Pr, Information, Graduate
 from .forms import PostForm, CommentForm #forms.py의 PostForm 객체 불러오기
+from django.core.paginator import Paginator
 
 def home(request):
     posts = Post.objects.filter().order_by('-pub_date')[:5]
@@ -153,16 +154,28 @@ def graduate_delete(request, graduate_id):
 #게시판
 def free_board(request):
     posts = Post.objects.filter().order_by('-pub_date')
-    return render(request, 'free_board.html', {'posts': posts})
+    paginator = Paginator(posts, 10)
+    page = request.GET.get('page')
+    paginated_posts = paginator.get_page(page)
+    return render(request, 'free_board.html', {'posts': paginated_posts})
 
 def pr_board(request):
     prs = Pr.objects.filter().order_by('-pub_date')
-    return render(request, 'pr_board.html', {'prs': prs})
+    paginator = Paginator(prs, 10)
+    page = request.GET.get('page')
+    paginated_prs = paginator.get_page(page)
+    return render(request, 'pr_board.html', {'prs': paginated_prs})
 
 def information_board(request):
     informations = Information.objects.filter().order_by('-pub_date')
-    return render(request, 'information_board.html', {'informations':informations})
+    paginator = Paginator(informations, 10)
+    page = request.GET.get('page')
+    paginated_informations = paginator.get_page(page)
+    return render(request, 'information_board.html', {'informations': paginated_informations})
 
 def graduate_board(request):
     graduates = Graduate.objects.filter().order_by('-pub_date')
-    return render(request, 'graduate_board.html', {'graduates':graduates})
+    paginator = Paginator(graduates, 10)
+    page = request.GET.get('page')
+    paginated_graduates = paginator.get_page(page)
+    return render(request, 'graduate_board.html', {'graduates': paginated_graduates})
