@@ -3,7 +3,22 @@
 <h1>제목: {{information.title}}</h1>
 <p>날짜: {{information.pub_date}}</p>
 <p>자세한 본문: {{information.body}}</p>
+<p>조회수: {{information_detail.update_counter}}</p>
 
-<a href="{% url 'information_update' information.id %}">수정하기</a>
-<a href="{% url 'information_delete' information.id %}">삭제하기</a>
+<!--post_detail이란 게시글을 참조하는 코멘트 집합 전체를 순회하도록 만들자-->
+{% for comment in information_detail.comment_set.all %}
+    <p> {{ comment }} </p>
+    <p> {{ comment.date }} </p> <!-- models.py > Comment 클래스 > date 변수 -->
+    <hr>
+{% endfor %}
+
+<!--댓글-->
+<form method="POST" action="{% url 'information_new_comment' information_detail.id %}">
+    {% csrf_token %}
+    {{ comment_form  }}
+    <input type="submit" value="댓글 입력">
+</form>
+
+<a href="{% url 'information_update' information_detail.id %}">수정하기</a>
+<a href="{% url 'information_delete' information_detail.id %}">삭제하기</a>
 <a href="{%url 'home'%}">홈으로</a> 
