@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
 from .models import Post, Pr, Information, Graduate
-from .forms import PostForm, CommentForm #forms.py의 PostForm 객체 불러오기
+from .forms import PostForm,PrForm,InfoForm,GradForm, CommentForm, pr_CommentForm, info_CommentForm,grad_CommentForm#forms.py의 PostForm 객체 불러오기
 from django.core.paginator import Paginator
 
 def home(request):
@@ -19,18 +19,18 @@ def detail(request, post_id):
 
 def detail_pr(request, pr_id):
     pr_detail = get_object_or_404(Pr, pk= pr_id)
-
-    return render(request, 'pr_detail.html', {'pr':pr_detail})
+    comment_form = pr_CommentForm()
+    return render(request, 'pr_detail.html', {'pr_detail':pr_detail, 'comment_form': comment_form})
 
 def detail_information(request, information_id):
     information_detail = get_object_or_404(Information, pk= information_id)
-
-    return render(request, 'information_detail.html', {'information':information_detail})
+    comment_form = info_CommentForm()
+    return render(request, 'information_detail.html', {'informatio_detail':information_detail, 'comment_form':comment_form})
 
 def detail_graduate(request, graduate_id):
     graduate_detail = get_object_or_404(Graduate, pk= graduate_id)
-
-    return render(request, 'graduate_detail.html', {'graduate':graduate_detail})
+    comment_form = grad_CommentForm()
+    return render(request, 'graduate_detail.html', {'graduate_detail':graduate_detail, 'comment_form':comment_form})
 
 #새로운 게시물 작성
 def new(request):
@@ -89,6 +89,42 @@ def new_comment(request, post_id) :
         # 저장한다.
         finished_form.save()
     return redirect('free_detail', post_id) # 댓글작성한 상세페이지로 이동
+
+def pr_new_comment(request, pr_id) : 
+    filled_form = PrForm(request.POST)
+    if filled_form.is_valid() : 
+        # 바로 저장하지 않고
+        finished_form = filled_form.save(commit=False)
+        # models.py > class Comment > post 정보 확인하여 연결된 게시글 확인
+        # 모델객체안에 필요한 정보를 채우고
+        finished_form.post = get_object_or_404(Pr, pk=pr_id)
+        # 저장한다.
+        finished_form.save()
+    return redirect('pr_detail', pr_id) # 댓글작성한 상세페이지로 이동
+
+def information_new_comment(request, information_id) : 
+    filled_form = InfoForm(request.POST)
+    if filled_form.is_valid() : 
+        # 바로 저장하지 않고
+        finished_form = filled_form.save(commit=False)
+        # models.py > class Comment > post 정보 확인하여 연결된 게시글 확인
+        # 모델객체안에 필요한 정보를 채우고
+        finished_form.post = get_object_or_404(Information, pk=information_id)
+        # 저장한다.
+        finished_form.save()
+    return redirect('information_detail', information_id) # 댓글작성한 상세페이지로 이동
+
+def graduate_new_comment(request, graduate_id) : 
+    filled_form = GradForm(request.POST)
+    if filled_form.is_valid() : 
+        # 바로 저장하지 않고
+        finished_form = filled_form.save(commit=False)
+        # models.py > class Comment > post 정보 확인하여 연결된 게시글 확인
+        # 모델객체안에 필요한 정보를 채우고
+        finished_form.post = get_object_or_404(Graduate, pk=graduate_id)
+        # 저장한다.
+        finished_form.save()
+    return redirect('graduate_detail', graduate_id) # 댓글작성한 상세페이지로 이동
 
 
 # update

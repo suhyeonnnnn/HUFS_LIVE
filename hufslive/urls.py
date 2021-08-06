@@ -38,7 +38,12 @@ urlpatterns = [
     path('graduate/create/', community.views.graduate_create, name="graduate_create"),
 
     path('accounts/', include('allauth.urls')),
+    
+    #댓글
     path('new_comment/<int:post_id>', community.views.new_comment, name='new_comment'),
+    path('pr/new_comment/<int:pr_id>', community.views.pr_new_comment, name='pr_new_comment'),
+    path('information/new_comment/<int:information_id>', community.views.information_new_comment, name='information_new_comment'),
+    path('graduate/new_comment/<int:graduate_id>', community.views.graduate_new_comment, name='graduate_new_comment'),
 
 
     path('update/<int:post_id>', community.views.update, name='free_update'),
