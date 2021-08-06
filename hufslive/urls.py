@@ -16,10 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 import community.views
+import accounts.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',community.views.home, name="home"),
+
+    path('login/',accounts.views.login, name="login"),
+    path('signup/',accounts.views.signup, name="signup"),
+    path('logout/', accounts.views.logout, name="logout"),
 
     path('post/<int:post_id>', community.views.detail, name="free_detail"),
     path('pr/<int:pr_id>', community.views.detail_pr, name="pr_detail"),
