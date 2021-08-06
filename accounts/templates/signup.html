@@ -1,0 +1,22 @@
+<div class="container">
+    <h1>Sign up!</h1>
+
+    <form method = "POST" action="{%url 'signup'%}">
+        {% csrf_token %} <!--보안을 위한 난수 발생기-->
+        Username:
+        <br>
+        <input name="username" type="text" value="">
+        <br>
+        Password:
+        <br>
+        <input name="password1" type="password" value="">
+        <br>
+        Confirm Password:
+        <br>
+        <input name="password2" type="password" value="">
+        <br>
+        <br>
+        <input class="btn btn-primary" type="submit" value="Sign up!">
+    </form>
+    <a href="{%url 'home'%}">홈으로</a>
+</div>
