@@ -22,10 +22,16 @@
         <header>
             <h1>HUFS Live</h1>
         </header>
-
-        <a href="{% url 'login' %}">로그인</a>
-        <a href="{% url 'logout' %}">로그아웃</a>
-        <a href="{% url 'signup' %}">회원가입</a>
+        {% if user.is_authenticated %}
+            <p>{{ user.username }}님이 로그인 중</p>
+            <a href="javascript:{document.getElementById('logout').submit()}">로그아웃</a>
+            <form id="logout" method="POST" action="{% url 'logout' %}">
+                {% csrf_token %} <input type="hidden" />
+            </form>
+        {% else %}
+            <a href="{% url 'signup' %}">회원가입</a>
+            <a href="{% url 'login' %}">로그인</a>
+        {% endif %}
     </div>
     <div class="nav-bar">
         <nav>            
