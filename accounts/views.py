@@ -19,7 +19,7 @@ def login(request):
             auth.login(request, user, backend='django.contrib.auth.backends.ModelBackend')
             return redirect('home')
         else:
-            return render(request, 'login.html', {'message': 'username or password is incorrect.'})
+            return render(request, 'login.html', {'error': 'username or password is incorrect.'})
     else:
         return render(request, 'login.html')
 
