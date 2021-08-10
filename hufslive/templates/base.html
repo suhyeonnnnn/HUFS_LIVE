@@ -12,7 +12,7 @@
 <body>
     <header>
         <div class="top-bar">
-            <a href="#" class="hufslive"><img src="{% static 'images/icon-topnav-logo40px@2x.png' %}"></a>
+            <a href="{%url 'home'%}" class="hufslive"><img src="{% static 'images/icon-topnav-logo40px@2x.png' %}"></a>
             <div class="top-bar-btn">
                 {% if user.is_authenticated %}
                 <div class="my-profile">
