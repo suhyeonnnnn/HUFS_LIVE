@@ -53,8 +53,11 @@ header{
 .login-btn, .signup-btn, .logout-btn{
     text-decoration: none;
     color: #606060;
-    font-size: 12px;
-    margin-right: 25px;
+    font-size: 14px;
+    margin-right: 21px;
+}
+.login-btn{
+    margin-right: 61px;
 }
 .my-profile{
     display: flex;
@@ -74,17 +77,9 @@ header{
     color: #808080;
 }
 .mypage-btn{
-    text-decoration: none;
-    color: #000000;
-    font-size: 12px;
-    border: 0.5px solid #D0D0D0;
-    border-radius: 2px;
     height: 37px;
     width: 95px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 36px;
+    margin-right: 32px;
 }
 .nav-bar1{
     display: flex;
@@ -139,11 +134,11 @@ footer > div{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 80px;
-    margin: 50px 120px;
+    height: 92px;
+    margin: 43px 120px;
 }
 .footer2 a{
     text-decoration: none;
-    font-size: 12px;
+    font-size: 14px;
     color: #909090;
 }

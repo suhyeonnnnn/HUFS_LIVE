@@ -66,12 +66,12 @@ body{
 .hotlink{
     display: flex;
     justify-content: space-between;
-    width: 820px;
+    width: 840px;
 }
 
 .hotlink a{
     text-decoration: none;
-    font-size: 14px;
+    font-size: 16px;
     color: #3c3c3c;
     display: flex;
     flex-direction: column;
@@ -96,33 +96,39 @@ article{
     display: flex;
     justify-content: space-between;
     width: 1280px;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
 }
 .board{
     display: flex;
     flex-direction: column;
-    height: 510px;
+    height: 630px;
     width: 630px;
-    padding: 20px 20px 28px 20px;
+    padding: 17px 20px 30px 20px;
     box-sizing: border-box;
 }
 .board-btn{
-    height: 30px;
+    height: 33px;
     width: 590px;
     border-bottom: 2px solid #F2F2F2;;
 }
 .board-btn a{
     display: flex;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 16px;
     color: #606060;
 }
 .board-btn a div{
-    margin: 0 10px;
+    margin-left: 10px;
+    margin-bottom: 9px;
+}
+.board-btn a img{
+    height: 20px;
+    width: 20px;
+    margin-top: 2px;
 }
 .post{
     text-decoration: none;
-    height: 98px;
+    height: 105px;
     width: 590px;
     padding: 10px;
     margin-top: 10px;
@@ -133,18 +139,18 @@ article{
     justify-content: space-between;
 }
 .post-title{
-    width: 420px;
+    width: 390px;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
-    font-size: 16px;
+    font-size: 18px;
     color: #000000;
 }
 .post-date{
-    width: 150px;
+    width: 180px;
     text-align: right;
     padding: 3px 0;
-    font-size: 12px;
+    font-size: 14px;
     color: #808080;
 }
 .post-main{
@@ -152,9 +158,9 @@ article{
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
-    font-size: 12px;
+    font-size: 16px;
     color: #313131;
-    margin: 4px 0 16px 0;
+    margin: 4px 0 9px;
 }
 .profile{
     display: flex;
@@ -162,16 +168,17 @@ article{
 .profile-img{
     width: 17px;
     height: 17px;
+    margin: 1.5px 0;
 }
 .profile-name{
     display: flex;
     align-items: center;
-    font-size: 12px;
+    font-size: 14px;
     color: #000000;
     margin-left: 5px;
 }
 .post-stat{
-    font-size: 12px;
+    font-size: 14px;
     color: #808080;
 }
 

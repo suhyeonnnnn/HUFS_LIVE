@@ -91,12 +91,8 @@ WSGI_APPLICATION = 'hufslive.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'hufslive', # DB이름
-        'USER': 'postgres',
-        'PASSWORD': 'boombaboo',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
