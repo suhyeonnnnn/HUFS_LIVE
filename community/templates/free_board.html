@@ -6,8 +6,9 @@
 <div class="container">
     {% for post in posts %}
     <h1><a href="{% url 'free_detail' post.id%}">{{post.title}}</a></h1>
-    <p>{{post.pub_date}}</p>
-    <p>{{post.summary}} </p>
+    날짜{{post.pub_date}}
+    본문내용{{post.summary}}
+    조회수{{post.update_counter}}
     {%endfor%}
 </div>
 
