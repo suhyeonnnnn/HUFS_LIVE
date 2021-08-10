@@ -5,10 +5,10 @@ from .forms import PostForm, CommentForm, PrCommentForm, GradCommentForm, InfoCo
 from django.core.paginator import Paginator
 
 def home(request):
-    posts = Post.objects.filter().order_by('-pub_date')[:5]
-    prs = Pr.objects.filter().order_by('-pub_date')[:5]
-    informations = Information.objects.filter().order_by('-pub_date')[:5]
-    graduates = Graduate.objects.filter().order_by('-pub_date')[:5] 
+    posts = Post.objects.filter().order_by('-pub_date')[:4]
+    prs = Pr.objects.filter().order_by('-pub_date')[:4]
+    informations = Information.objects.filter().order_by('-pub_date')[:4]
+    graduates = Graduate.objects.filter().order_by('-pub_date')[:4] 
     return render(request, 'home.html', {'posts':posts, 'prs':prs, 'informations':informations, 'graduates':graduates})
 
 #상세 페이지
