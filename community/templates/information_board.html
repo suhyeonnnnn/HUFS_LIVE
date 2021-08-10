@@ -58,16 +58,33 @@
 {% endblock %}
 
 
-<div class="paginator">
-    {% if informations.has_previous %}
-    <a href="?page=1">처음</a>
-    <a href="?page={{informations.previous_page_number}}">이전</a>
-    {% endif %}
-    <span>{{informations.number}}</span>
-    <span>of</span>
-    <span>{{informations.paginator.num_pages}}</span>
-    {% if informations.has_next %}
-    <a href="?page={{informations.next_page_number}}">다음</a>
-    <a href="?page={{informations.paginator.num_pages}}">마지막</a>
-    {% endif %}
-  </div>
+<div style="text-align:center">
+    <div class="pagination">
+    
+        <div style="width:35%; margin: 5px;">
+        {% if informations.has_previous %}
+            <a class="abutton" href="?page=1">맨 앞으로</a>
+            <a class="abutton" href="?page={{ informations.previous_page_number }}">이전</a>
+        {% endif %}
+        </div>
+
+        <div style="width:30%; margin: 5px;">
+        {% for page in informations.paginator.page_range %}
+            {% if page >= informations.number|add:-2 and page <= informations.number|add:2 %}
+            <span class="{% if page == informations.number %}current{% endif %}">
+                <a href="?page={{ page }}">{{ page}}</a>
+            </span>
+            {% elif page >= informations.number|add:-3 and page <= informations.number|add:3 %}
+                ..
+            {% endif %}
+        {% endfor %}
+        </div>
+
+        <div style="width:35%; margin: 5px;">
+        {% if informations.has_next %}
+            <a class="abutton" href="?page={{ informations.next_page_number }}">다음</a>
+            <a class="abutton" href="?page={{ informations.paginator.num_pages }}">맨 뒤로</a>
+        {% endif %}
+        </div>
+    </div>  
+</div> 

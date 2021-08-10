@@ -57,16 +57,33 @@
 </html>
 {% endblock %}
 
-<div class="paginator">
-    {% if prs.has_previous %}
-    <a href="?page=1">처음</a>
-    <a href="?page={{prs.previous_page_number}}">이전</a>
-    {% endif %}
-    <span>{{prs.number}}</span>
-    <span>of</span>
-    <span>{{prs.paginator.num_pages}}</span>
-    {% if prs.has_next %}
-    <a href="?page={{prs.next_page_number}}">다음</a>
-    <a href="?page={{prs.paginator.num_pages}}">마지막</a>
-    {% endif %}
-  </div>
+<div style="text-align:center">
+    <div class="pagination">
+    
+        <div style="width:35%; margin: 5px;">
+        {% if prs.has_previous %}
+            <a class="abutton" href="?page=1">맨 앞으로</a>
+            <a class="abutton" href="?page={{ prs.previous_page_number }}">이전</a>
+        {% endif %}
+        </div>
+
+        <div style="width:30%; margin: 5px;">
+        {% for page in prs.paginator.page_range %}
+            {% if page >= prs.number|add:-2 and page <= prs.number|add:2 %}
+            <span class="{% if page == prs.number %}current{% endif %}">
+                <a href="?page={{ page }}">{{ page}}</a>
+            </span>
+            {% elif page >= prs.number|add:-3 and page <= prs.number|add:3 %}
+                ..
+            {% endif %}
+        {% endfor %}
+        </div>
+
+        <div style="width:35%; margin: 5px;">
+        {% if prs.has_next %}
+            <a class="abutton" href="?page={{ prs.next_page_number }}">다음</a>
+            <a class="abutton" href="?page={{ prs.paginator.num_pages }}">맨 뒤로</a>
+        {% endif %}
+        </div>
+    </div>  
+</div> 
