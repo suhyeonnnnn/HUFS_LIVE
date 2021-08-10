@@ -65,6 +65,7 @@
                     <h1><a href="{% url 'free_detail' post.id%}">{{post.title}}</a></h1>
                     <p>{{post.pub_date}}</p>
                     <p>{{post.summary}} </p>
+                    <p>{{post.update_counter}}</p>
                 {%endfor%}
             </div>
             <div class="board">
@@ -76,6 +77,7 @@
                     <h1><a href="{% url 'pr_detail' pr.id%}">{{pr.title}}</a></h1>
                     <p>{{pr.pub_date}}</p>
                     <p>{{pr.summary}}</p>
+                    <p>{{pr.update_counter}}</p>
                 {%endfor%}
             </div>
         </div>
@@ -89,6 +91,7 @@
                     <h1><a href="{% url 'information_detail' information.id%}">{{information.title}}</a></h1>
                     <p>{{information.pub_date}}</p>
                     <p>{{information.summary}}</p>
+                    <p>{{information.update_counter}}</p>
                 {%endfor%}
             </div>
             <div class="board" >
@@ -100,6 +103,7 @@
                     <h1><a href="{% url 'graduate_detail' graduate.id%}">{{graduate.title}}</a></h1>
                     <p>{{graduate.pub_date}}</p>
                     <p>{{graduate.summary}}</p>
+                    <p>{{graduate.update_counter}}</p>
                 {%endfor%}
             </div>
         </div>
