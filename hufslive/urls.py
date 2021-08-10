@@ -65,5 +65,7 @@ urlpatterns = [
     path('pr/', community.views.pr_board, name='pr_board'),
     path('information/', community.views.information_board, name='information_board'),
     path('graduate/', community.views.graduate_board, name='graduate_board'), 
+
+    path('mypage/', community.views.my_page, name='my_page')
     
 ]

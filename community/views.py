@@ -268,3 +268,7 @@ def graduate_board(request):
     page = request.GET.get('page')
     paginated_graduates = paginator.get_page(page)
     return render(request, 'graduate_board.html', {'graduates': paginated_graduates})
+
+#마이페이지
+def my_page(request):
+    return render(request, 'my_page.html')

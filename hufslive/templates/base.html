@@ -20,7 +20,7 @@
                     <div class="my-nickname">{{ user.username }}</div>
                     <span>님</span>
                 </div>
-                <a href="#" class="mypage-btn">마이페이지</a>
+                <a href="{% url 'my_page' %}" class="mypage-btn">마이페이지</a>
                 <a href="javascript:{document.getElementById('logout').submit()}" class="logout-btn">로그아웃</a>
                 <form id="logout" method="POST" action="{% url 'logout' %}">
                     {% csrf_token %} <input type="hidden" />
