@@ -94,7 +94,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'hufslive', # DB이름
         'USER': 'postgres',
-        'PASSWORD': '설정한 비밀번호',
+        'PASSWORD': 'boombaboo',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }

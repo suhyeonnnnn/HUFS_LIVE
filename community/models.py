@@ -1,7 +1,9 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # 자유게시판
 class Post(models.Model):
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     title = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published')
     body = models.TextField()
@@ -21,6 +23,7 @@ class Post(models.Model):
         
 # 홍보게시판
 class Pr(models.Model):
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     title = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published')
     body = models.TextField()
@@ -39,6 +42,7 @@ class Pr(models.Model):
 
 # 정보게시판
 class Information(models.Model):
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     title = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published')
     body = models.TextField()
@@ -58,6 +62,7 @@ class Information(models.Model):
 
 #졸업생게시판
 class Graduate(models.Model):
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     title = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published')
     body = models.TextField()

@@ -120,6 +120,7 @@ def graduate_new(request):
 
 def create(request): #new.html의 form에서 입력받은 내용을 DB로 넣어주는 함수
     community = Post()
+    community.author = request.user
     community.title = request.GET['title']
     community.body = request.GET['body']
     community.pub_date = timezone.datetime.now()
@@ -128,6 +129,7 @@ def create(request): #new.html의 form에서 입력받은 내용을 DB로 넣어
 
 def pr_create(request): 
     community = Pr()
+    community.author = request.user
     community.title = request.GET['title']
     community.body = request.GET['body']
     community.pub_date = timezone.datetime.now()
@@ -136,6 +138,7 @@ def pr_create(request):
 
 def information_create(request): 
     community = Information()
+    community.author = request.user
     community.title = request.GET['title']
     community.body = request.GET['body']
     community.pub_date = timezone.datetime.now()
@@ -144,6 +147,7 @@ def information_create(request):
 
 def graduate_create(request): 
     community = Graduate()
+    community.author = request.user
     community.title = request.GET['title']
     community.body = request.GET['body']
     community.pub_date = timezone.datetime.now()

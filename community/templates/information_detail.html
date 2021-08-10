@@ -4,6 +4,7 @@
 <p>날짜: {{information_detail.pub_date}}</p>
 <p>자세한 본문: {{information_detail.body}}</p>
 <p>조회수: {{information_detail.update_counter}}</p>
+<p>작성자: {{information_detail.author}}</p>>
 
 <form>
     <!--post_detail이란 게시글을 참조하는 코멘트 집합 전체를 순회하도록 만들자-->
@@ -21,6 +22,8 @@
         <input type="submit" value="댓글 입력">
     </form>
 
+{% if information_detail.author == user %}
 <a href="{% url 'information_update' information_detail.id %}">수정하기</a>
 <a href="{% url 'information_delete' information_detail.id %}">삭제하기</a>
+{% endif %}
 <a href="{%url 'home'%}">홈으로</a> 
