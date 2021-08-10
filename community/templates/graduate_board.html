@@ -11,17 +11,34 @@
     조회수{{graduate.update_counter}}
     {%endfor%}
 </div>
+  
+<div style="text-align:center">
+    <div class="pagination">
+    
+        <div style="width:35%; margin: 5px;">
+        {% if graduates.has_previous %}
+            <a class="abutton" href="?page=1">맨 앞으로</a>
+            <a class="abutton" href="?page={{ graduates.previous_page_number }}">이전</a>
+        {% endif %}
+        </div>
 
-<div class="paginator">
-    {% if graduates.has_previous %}
-    <a href="?page=1">처음</a>
-    <a href="?page={{graduates.previous_page_number}}">이전</a>
-    {% endif %}
-    <span>{{graduates.number}}</span>
-    <span>of</span>
-    <span>{{graduates.paginator.num_pages}}</span>
-    {% if graduates.has_next %}
-    <a href="?page={{graduates.next_page_number}}">다음</a>
-    <a href="?page={{graduates.paginator.num_pages}}">마지막</a>
-    {% endif %}
-  </div>
+        <div style="width:30%; margin: 5px;">
+        {% for page in graduates.paginator.page_range %}
+            {% if page >= graduates.number|add:-2 and page <= graduates.number|add:2 %}
+            <span class="{% if page == graduates.number %}current{% endif %}">
+                <a href="?page={{ page }}">{{ page}}</a>
+            </span>
+            {% elif page >= graduates.number|add:-3 and page <= graduates.number|add:3 %}
+                ..
+            {% endif %}
+        {% endfor %}
+        </div>
+
+        <div style="width:35%; margin: 5px;">
+        {% if graduates.has_next %}
+            <a class="abutton" href="?page={{ graduates.next_page_number }}">다음</a>
+            <a class="abutton" href="?page={{ graduates.paginator.num_pages }}">맨 뒤로</a>
+        {% endif %}
+        </div>
+    </div>  
+</div> 
