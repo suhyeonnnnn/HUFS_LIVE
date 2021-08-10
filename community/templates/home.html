@@ -1,115 +1,126 @@
+{% extends 'base.html' %}
+{% block content %}
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HUFS Live</title>
-    <style>
-        .top-bar, .nav-bar{text-align: center;}
-        .stat{display: flex;}
-        a{text-decoration: none;}
-        .board{
-            flex: 1;
-            border: 1px solid gray;
-            margin: 20px;
-            padding: 20px;
-        }
-    </style>
+    {% load static %}
+    {% block extrahead %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    {% endblock %}
 </head>
 <body>
-    <div class="top-bar">
-        <header>
-            <h1>HUFS Live</h1>
-        </header>
-
-        {% if user.is_authenticated %}
-        <p>{{ user.username }}님이 로그인 중</p>
-        <a href="javascript:{document.getElementById('logout').submit()}">로그아웃</a>
-        <form id="logout" method="POST" action="{% url 'logout' %}">
-            {% csrf_token %} <input type="hidden" />
-        </form>
-        {% else %}
-        <a href="{% url 'signup' %}">회원가입</a>
-        <a href="{% url 'login' %}">로그인</a>
-        {% endif %}
+    <div class="ad-banner">
+        <div class="ad-img"><img src="{% static 'images/ad-banner.png' %}"></div>
+        <div class="ad-btn">
+            <button type="button" class="left-arrow"><img src="{% static 'images/icon-hero-arrow-left@2x.png' %}"></button>
+            <button type="button" class="right-arrow"><img src="{% static 'images/icon-hero-arrow-right@2x.png' %}"></button>
+        </div>
     </div>
-    <div class="nav-bar">
-        <nav>            
-            <a href="{% url 'free_board' %}">자유 게시판</h4>
-            <a href="{% url 'pr_board' %}">홍보 게시판</a>
-            <a href="{% url 'information_board' %}">정보 게시판</a>
-            <a href="{% url 'graduate_board' %}">졸업생 게시판</a>
-        </nav>
+    <div class="nav-bar2">
         <div class="hotlink">
-            <br>
-            외부링크 모음 
-            <br> 
-            <a href="https://www.hufs.ac.kr/" target="_blank">학교홈</a>
-            <a href="https://wis.hufs.ac.kr/src08/jsp/index.jsp" target="_blank">종정시</a>
-            <a href="https://eclass.hufs.ac.kr/ilos/main/main_form.acl" target="_blank">이클래스</a>
-            <a href="https://webs.hufs.ac.kr/jsp/HUFS/seb/listCourseCatalog.jsp?campusGb=H1" target="_blank">수강편람</a>
-            <a href="https://library.hufs.ac.kr/#/" target="_blank">도서관</a>
-            <a href="https://hufs.everytime.kr/" target="_blank">에브리타임</a>
-            <a href="https://wis.hufs.ac.kr/jsp/HUFS/cafeteria/frame_view.jsp" target="_blank">학식</a>
+            <a href="https://www.hufs.ac.kr/" target="_blank"><img src="{% static 'images/icon-hotlink-button@2x.png' %}">학교홈</a>
+            <a href="https://eclass.hufs.ac.kr/ilos/main/main_form.acl" target="_blank"><img src="{% static 'images/icon-hotlink-button@2x.png' %}">e-class</a>
+            <a href="https://wis.hufs.ac.kr/src08/jsp/index.jsp" target="_blank"><img src="{% static 'images/icon-hotlink-button@2x.png' %}">종정시</a>
+            <a href="http://haksa.hufs.ac.kr" target="_blank"><img src="{% static 'images/icon-hotlink-button@2x.png' %}">학종지</a>
+            <a href="#" target="_blank"><img src="{% static 'images/icon-hotlink-button@2x.png' %}">학사공지</a>
+            <a href="https://webs.hufs.ac.kr/jsp/HUFS/seb/listCourseCatalog.jsp?campusGb=H1" target="_blank"><img src="{% static 'images/icon-hotlink-button@2x.png' %}">수강편람</a>
+            <a href="https://library.hufs.ac.kr/#/" target="_blank"><img src="{% static 'images/icon-hotlink-button@2x.png' %}">도서관</a>
+            <a href="https://hufs.everytime.kr/" target="_blank"><img src="{% static 'images/icon-hotlink-button@2x.png' %}">에브리타임</a>
+            <a href="https://wis.hufs.ac.kr/jsp/HUFS/cafeteria/frame_view.jsp" target="_blank"><img src="{% static 'images/icon-hotlink-button@2x.png' %}">학식</a>
         </div>
     </div>
-    <section>
+    <article>
         <div class="stat">
             <div class="board">
-                <a href="{% url 'free_board' %}">자유 게시판</h4>
-                {% if user.is_authenticated %}
-                <a href="{%url 'free_new'%}">자유게시판글쓰기</a>
-                {% endif %}
-                {% for post in posts.all%}
-                    <h1><a href="{% url 'free_detail' post.id%}">{{post.title}}</a></h1>
-                    <p>{{post.pub_date}}</p>
-                    <p>{{post.summary}} </p>
-                    <p>{{post.update_counter}}</p>
-                {%endfor%}
+                <div class="board-btn"><a href="{% url 'free_board' %}"><div>자유게시판</div><img src="{% static 'images/keyboard-arrow-down-24px@2x.png' %}"></a></div>
+                {% for post in posts.all %}
+                <a href="{% url 'free_detail' post.id%}" class="post">
+                    <div class="post-detail1">
+                        <div class="post-title">{{post.title}}</div>
+                        <div class="post-date">{{post.pub_date}}</div>
+                    </div>
+                    <div class="post-main">{{post.summary}}</div>
+                    <div class="post-detail2">
+                        <div class="profile">
+                            <img src="{% static 'images/img-sample-user-profile@2x.png' %}" class="profile-img">
+                            <div class="profile-name">고차차</div>
+                        </div>
+                        <div class="post-stat">조회수 12,345</div>
+                    </div>
+                </a>
+                {% endfor %}
             </div>
             <div class="board">
-                <a href="{% url 'pr_board' %}">홍보 게시판</a>
-                {% if user.is_authenticated %}
-                <a href="{%url 'pr_new'%}">홍보게시판글쓰기</a> 
-                {% endif %}
-                {% for pr in prs.all%}
-                    <h1><a href="{% url 'pr_detail' pr.id%}">{{pr.title}}</a></h1>
-                    <p>{{pr.pub_date}}</p>
-                    <p>{{pr.summary}}</p>
-                    <p>{{pr.update_counter}}</p>
-                {%endfor%}
+                <div class="board-btn"><a href="{% url 'pr_board' %}"><div>홍보게시판</div><img src="{% static 'images/keyboard-arrow-down-24px@2x.png' %}"></a></div>
+                {% for pr in prs.all %}
+                <a href="{% url 'pr_detail' pr.id%}" class="post">
+                    <div class="post-detail1">
+                        <div class="post-title">{{pr.title}}</div>
+                        <div class="post-date">{{pr.pub_date}}</div>
+                    </div>
+                    <div class="post-main">{{pr.summary}}</div>
+                    <div class="post-detail2">
+                        <div class="profile">
+                            <img src="{% static 'images/img-sample-user-profile@2x.png' %}" class="profile-img">
+                            <div class="profile-name">고차차</div>
+                        </div>
+                        <div class="post-stat">조회수 12,345</div>
+                    </div>
+                </a>
+                {% endfor %}
             </div>
         </div>
         <div class="stat">
             <div class="board">
-                <a href="{% url 'information_board' %}">정보 게시판</a>
-                {% if user.is_authenticated %}
-                <a href="{%url 'information_new'%}">정보게시판글쓰기</a>
-                {% endif %}
-                {% for information in informations.all%}
-                    <h1><a href="{% url 'information_detail' information.id%}">{{information.title}}</a></h1>
-                    <p>{{information.pub_date}}</p>
-                    <p>{{information.summary}}</p>
-                    <p>{{information.update_counter}}</p>
-                {%endfor%}
+                <div class="board-btn"><a href="{% url 'information_board' %}"><div>정보게시판</div><img src="{% static 'images/keyboard-arrow-down-24px@2x.png' %}"></a></div>
+                {% for information in informations.all %}
+                <a href="{% url 'information_detail' information.id%}" class="post">
+                    <div class="post-detail1">
+                        <div class="post-title">{{information.title}}</div>
+                        <div class="post-date">{{information.pub_date}}</div>
+                    </div>
+                    <div class="post-main">{{information.summary}}</div>
+                    <div class="post-detail2">
+                        <div class="profile">
+                            <img src="{% static 'images/img-sample-user-profile@2x.png' %}" class="profile-img">
+                            <div class="profile-name">고차차</div>
+                        </div>
+                        <div class="post-stat">조회수 12,345</div>
+                    </div>
+                </a>
+                {% endfor %}
             </div>
-            <div class="board" >
-                <a href="{% url 'graduate_board' %}">졸업생 게시판</a>
-                {% if user.is_authenticated %}
-                <a href="{%url 'graduate_new'%}">졸업생게시판글쓰기</a>
-                {% endif %}
-                {% for graduate in graduates.all%}
-                    <h1><a href="{% url 'graduate_detail' graduate.id%}">{{graduate.title}}</a></h1>
-                    <p>{{graduate.pub_date}}</p>
-                    <p>{{graduate.summary}}</p>
-                    <p>{{graduate.update_counter}}</p>
-                {%endfor%}
+            <div class="board">
+                <div class="board-btn"><a href="{% url 'graduate_board' %}"><div>졸업생게시판</div><img src="{% static 'images/keyboard-arrow-down-24px@2x.png' %}"></a></div>
+                {% for graduate in graduates.all %}
+                <a href="{% url 'graduate_detail' graduate.id%}" class="post">
+                    <div class="post-detail1">
+                        <div class="post-title">{{graduate.title}}</div>
+                        <div class="post-date">{{graduate.pub_date}}</div>
+                    </div>
+                    <div class="post-main">{{graduate.summary}}</div>
+                    <div class="post-detail2">
+                        <div class="profile">
+                            <img src="{% static 'images/img-sample-user-profile@2x.png' %}" class="profile-img">
+                            <div class="profile-name">고차차</div>
+                        </div>
+                        <div class="post-stat">조회수 12,345</div>
+                    </div>
+                </a>
+                {% endfor %}
             </div>
         </div>
-    </section>
-
-    <footer></footer>
-    
+    </article>
+    <div class="ad-container">
+        <div>
+            <img src="{% static 'images/img-sample-banner1@2x.png' %}">
+            <img src="{% static 'images/img-sample-banner2@2x.png' %}">
+            <img src="{% static 'images/img-sample-banner3@2x.png' %}">
+            <img src="{% static 'images/img-sample-banner4@2x.png' %}">
+        </div>
+    </div>
 </body>
 </html>
+{% endblock %}

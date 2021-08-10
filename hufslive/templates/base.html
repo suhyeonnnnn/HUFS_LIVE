@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HUFS Live</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% block extrahead %}
+    {% endblock %}
+</head>
+<body>
+    <header>
+        <div class="top-bar">
+            <a href="#" class="hufslive"><img src="{% static 'images/icon-topnav-logo40px@2x.png' %}"></a>
+            <div class="top-bar-btn">
+                {% if user.is_authenticated %}
+                <div class="my-profile">
+                    <img src="{% static 'images/img-sample-user-profile@2x.png' %}">
+                    <div class="my-nickname">{{ user.username }}</div>
+                    <span>님</span>
+                </div>
+                <a href="#" class="mypage-btn">마이페이지</a>
+                <a href="javascript:{document.getElementById('logout').submit()}" class="logout-btn">로그아웃</a>
+                <form id="logout" method="POST" action="{% url 'logout' %}">
+                    {% csrf_token %} <input type="hidden" />
+                </form>
+                {% else %}
+                <a href="{% url 'login' %}" class="login-btn">로그인</a>
+                <a href="{% url 'signup' %}" class="signup-btn">회원가입</a>
+                {% endif %}
+            </div>
+        </div>
+        <div class="nav-bar1">
+            <a href="{% url 'free_board' %}">자유게시판</a>
+            <a href="{% url 'pr_board' %}">홍보게시판</a>
+            <a href="{% url 'information_board' %}">정보게시판</a>
+            <a href="{% url 'graduate_board' %}">졸업생게시판</a>
+        </div>
+    </header>
+    <section class="section">
+        {% block content %}
+        {% endblock %}
+    </section>
+    <footer>
+        <div>
+            <div class="footer1">
+                <div class="footer-img"><img src="{% static 'images/icon-footer-logo28px@2x.png' %}"></div>
+                <span class="footer-text">외대인을 위한 소통과 정보 포털</span>
+                <span class="footer-email">boombaboo@gmail.com</span>
+            </div>
+            <div class="footer2">
+                <a href="#">HUFS Life 소개</a>
+                <a href="#">이용약관</a>
+                <a href="#">광고/제휴 안내</a>
+                <a href="#">건의/요청</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
