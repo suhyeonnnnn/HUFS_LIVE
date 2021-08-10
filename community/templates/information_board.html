@@ -1,16 +1,62 @@
-<h1>정보 게시판</h1>
-{% if user.is_authenticated %}
-<a href="{%url 'information_new'%}">정보게시판글쓰기</a>
-{% endif %}
-
-<div class="container">
+{% extends 'base.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    {% block extrahead %}
+    <link rel="stylesheet" href="{% static 'css/board.css' %}">
+    {% endblock %}
+</head>
+<body>
+    <div class="board-bar">
+        <div class="board-guide">
+            <div class="board-name">정보게시판</div>
+            <div class="board-text">정보게시판의 건전한 운영과 모든 외대생의 자유로운 의사 표현을 위해 욕설과 비속어 사용을 자제 부탁드리며, 적발시 훕스라이브 사용이 제한될 수 있습니다.</div>
+        </div>
+        {% if user.is_authenticated %}
+        <a href="{%url 'information_new'%}" class="new-post-btn"><img src="{% static 'images/button-write-post@2x.png' %}"></a>
+        {% endif %}
+    </div>
+    <div class="board-info">
+        <div class="board-info-title">제목</div>
+        <div class="board-info-writer">글쓴이</div>
+        <div class="board-info-date">날짜</div>
+        <div class="board-info-views">조회수</div>
+    </div>
     {% for information in informations %}
-    <h1><a href="{% url 'information_detail' information.id%}">{{information.title}}</a></h1>
-    <p>{{information.pub_date}}</p>
-    <p>{{information.summary}}</p>
-    조회수{{information.update_counter}}
+    <div class="post">
+        <a href="{% url 'information_detail' information.id%}" class="post-detail">
+            <div class="post-title">{{information.title}}</div>
+            <div class="post-main">{{information.summary}}</div>
+        </a>
+        <div class="post-writer">
+            <div>
+                <img src="{% static 'images/img-sample-user-profile@2x.png' %}">
+                <div class="writer-nickname">{{information.author}}</div>
+            </div>
+        </div>
+        <div class="post-date"><div>{{information.pub_date | date:'m/d H:i' }}</div></div>
+        <div class="post-views">{{information.update_counter}}</div>
+    </div>
     {%endfor%}
-</div>
+    <div class="pagination">
+        <a href="#" class="prev-page"></a>
+        <div class="page-number">
+            <a href="#" class="cur-page">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#">4</a>
+            <a href="#">5</a>
+        </div>
+        <a href="#" class="next-page"><img src="{% static 'images/keyboard-arrow-down-24px@2x.png' %}"></a>
+    </div>
+</body>
+</html>
+{% endblock %}
+
 
 <div class="paginator">
     {% if informations.has_previous %}
