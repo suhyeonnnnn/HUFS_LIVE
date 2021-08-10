@@ -8,6 +8,7 @@
     <h1><a href="{% url 'pr_detail' pr.id%}">{{pr.title}}</a></h1>
     <p>{{pr.pub_date}}</p>
     <p>{{pr.summary}}</p>
+    조회수{{pr.update_counter}}
     {%endfor%}
 </div>
 

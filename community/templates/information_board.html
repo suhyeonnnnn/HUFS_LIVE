@@ -8,6 +8,7 @@
     <h1><a href="{% url 'information_detail' information.id%}">{{information.title}}</a></h1>
     <p>{{information.pub_date}}</p>
     <p>{{information.summary}}</p>
+    조회수{{information.update_counter}}
     {%endfor%}
 </div>
 
