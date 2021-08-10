@@ -128,7 +128,7 @@ article{
 }
 .post{
     text-decoration: none;
-    height: 100px;
+    height: 105px;
     width: 590px;
     padding: 10px;
     margin-top: 10px;
@@ -168,6 +168,7 @@ article{
 .profile-img{
     width: 17px;
     height: 17px;
+    margin: 1.5px 0;
 }
 .profile-name{
     display: flex;
