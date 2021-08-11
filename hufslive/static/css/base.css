@@ -63,10 +63,6 @@ header{
     display: flex;
     margin: 0 30px;
 }
-.my-profile img{
-    height: 21px;
-    width: 21px;
-}
 .my-nickname{
     font-size: 14px;
     color: #000000;
