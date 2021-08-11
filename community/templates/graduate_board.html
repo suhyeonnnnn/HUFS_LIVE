@@ -29,50 +29,35 @@
     {% for graduate in graduates %}
     <div class="post">
         <a href="{% url 'graduate_detail' graduate.id%}" class="post-detail">
-            <div class="post-title">{{graduate.title}}</div>
-            <div class="post-main">{{graduate.summary}}</div>
-        </a>
-        <div class="post-writer">
             <div>
-                <img src="{% static 'images/img-sample-user-profile@2x.png' %}">
-                <div class="writer-nickname">{{graduate.author}}</div>
+                <div class="post-title">{{graduate.title}}</div>
+                <div class="post-main">{{graduate.summary}}</div>
             </div>
-        </div>
+        </a>
+        <div class="post-writer">{{graduate.author}}</div>
         <div class="post-date"><div>{{graduate.pub_date | date:'m/d H:i' }}</div></div>
         <div class="post-views">{{graduate.update_counter}}</div>
     </div>
-    {%endfor%} 
-<div style="text-align:center">
+    {%endfor%}
     <div class="pagination">
-    
-        <div style="width:35%; margin: 5px;">
         {% if graduates.has_previous %}
-            <a class="abutton" href="?page=1">맨 앞으로</a>
-            <a class="abutton" href="?page={{ graduates.previous_page_number }}">이전</a>
+        <a href="?page={{ graduates.previous_page_number }}" class="prev-page"><img src="{% static 'images/icon-arrow-left@2x.png' %}"></a>
+        {% else %}
+        <a href="#" class="prev-page hidden"><img src="{% static 'images/icon-arrow-left@2x.png' %}"></a>      
         {% endif %}
+        <div class="page-number">
+            {% for page in graduates.paginator.page_range %}
+                {% if page >= graduates.number|add:-2 and page <= graduates.number|add:2 %}
+                    <a href="?page={{ page }}" class="{% if page == graduates.number %}cur-page{% endif %}">{{ page }}</a>
+                {% endif %}
+            {% endfor %}
         </div>
-      
-        <div style="width:30%; margin: 5px;">
-        {% for page in graduates.paginator.page_range %}
-            {% if page >= graduates.number|add:-2 and page <= graduates.number|add:2 %}
-            <span class="{% if page == graduates.number %}current{% endif %}">
-                <a href="?page={{ page }}">{{ page}}</a>
-            </span>
-            {% elif page >= graduates.number|add:-3 and page <= graduates.number|add:3 %}
-                ..
-            {% endif %}
-        {% endfor %}
-        </div>
-
-        <div style="width:35%; margin: 5px;">
         {% if graduates.has_next %}
-            <a class="abutton" href="?page={{ graduates.next_page_number }}">다음</a>
-            <a class="abutton" href="?page={{ graduates.paginator.num_pages }}">맨 뒤로</a>
+        <a href="?page={{ graduates.next_page_number }}" class="next-page"><img src="{% static 'images/icon-arrow-right@2x.png' %}"></a>
+        {% else %}
+        <a href="#" class="next-page hidden"><img src="{% static 'images/icon-arrow-right@2x.png' %}"></a>
         {% endif %}
-        </div>
-    </div>  
-</div> 
-
+    </div>
 </body>
 </html>
 {% endblock %}

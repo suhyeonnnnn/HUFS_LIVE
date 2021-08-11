@@ -61,11 +61,8 @@ header{
 }
 .my-profile{
     display: flex;
+    align-items: center;
     margin: 0 30px;
-}
-.my-profile img{
-    height: 21px;
-    width: 21px;
 }
 .my-nickname{
     font-size: 14px;

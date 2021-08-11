@@ -29,61 +29,35 @@
     {% for post in posts %}
     <div class="post">
         <a href="{% url 'free_detail' post.id%}" class="post-detail">
-            <div class="post-title">{{post.title}}</div>
-            <div class="post-main">{{post.summary}}</div>
-        </a>
-        <div class="post-writer">
             <div>
-                <img src="{% static 'images/img-sample-user-profile@2x.png' %}">
-                <div class="writer-nickname">{{post.author}}</div>
+                <div class="post-title">{{post.title}}</div>
+                <div class="post-main">{{post.summary}}</div>
             </div>
-        </div>
+        </a>
+        <div class="post-writer">{{post.author}}</div>
         <div class="post-date"><div>{{post.pub_date | date:'m/d H:i' }}</div></div>
         <div class="post-views">{{post.update_counter}}</div>
     </div>
     {%endfor%}
     <div class="pagination">
-        <a href="#" class="prev-page"></a>
+        {% if posts.has_previous %}
+        <a href="?page={{ posts.previous_page_number }}" class="prev-page"><img src="{% static 'images/icon-arrow-left@2x.png' %}"></a>
+        {% else %}
+        <a href="#" class="prev-page hidden"><img src="{% static 'images/icon-arrow-left@2x.png' %}"></a>      
+        {% endif %}
         <div class="page-number">
-            <a href="#" class="cur-page">1</a>
-            <a href="#">2</a>
-            <a href="#">3</a>
-            <a href="#">4</a>
-            <a href="#">5</a>
+            {% for page in posts.paginator.page_range %}
+                {% if page >= posts.number|add:-2 and page <= posts.number|add:2 %}
+                    <a href="?page={{ page }}" class="{% if page == posts.number %}cur-page{% endif %}">{{ page }}</a>
+                {% endif %}
+            {% endfor %}
         </div>
-        <a href="#" class="next-page"><img src="{% static 'images/keyboard-arrow-down-24px@2x.png' %}"></a>
+        {% if posts.has_next %}
+        <a href="?page={{ posts.next_page_number }}" class="next-page"><img src="{% static 'images/icon-arrow-right@2x.png' %}"></a>
+        {% else %}
+        <a href="#" class="next-page hidden"><img src="{% static 'images/icon-arrow-right@2x.png' %}"></a>
+        {% endif %}
     </div>
 </body>
 </html>
 {% endblock %}
-
-<div style="text-align:center">
-    <div class="pagination">
-    
-        <div style="width:35%; margin: 5px;">
-        {% if posts.has_previous %}
-            <a class="abutton" href="?page=1">맨 앞으로</a>
-            <a class="abutton" href="?page={{ posts.previous_page_number }}">이전</a>
-        {% endif %}
-        </div>
-
-        <div style="width:30%; margin: 5px;">
-        {% for page in posts.paginator.page_range %}
-            {% if page >= posts.number|add:-2 and page <= posts.number|add:2 %}
-            <span class="{% if page == posts.number %}current{% endif %}">
-                <a href="?page={{ page }}">{{ page}}</a>
-            </span>
-            {% elif page >= posts.number|add:-3 and page <= posts.number|add:3 %}
-                ..
-            {% endif %}
-        {% endfor %}
-        </div>
-
-        <div style="width:35%; margin: 5px;">
-        {% if posts.has_next %}
-            <a class="abutton" href="?page={{ posts.next_page_number }}">다음</a>
-            <a class="abutton" href="?page={{ posts.paginator.num_pages }}">맨 뒤로</a>
-        {% endif %}
-        </div>
-    </div>  
-</div> 

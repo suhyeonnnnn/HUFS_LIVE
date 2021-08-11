@@ -247,28 +247,28 @@ def graduate_delete(request, graduate_id):
 #게시판
 def free_board(request):
     posts = Post.objects.filter().order_by('-pub_date')
-    paginator = Paginator(posts, 10)
+    paginator = Paginator(posts, 20)
     page = request.GET.get('page')
     paginated_posts = paginator.get_page(page)
     return render(request, 'free_board.html', {'posts': paginated_posts})
 
 def pr_board(request):
     prs = Pr.objects.filter().order_by('-pub_date')
-    paginator = Paginator(prs, 10)
+    paginator = Paginator(prs, 20)
     page = request.GET.get('page')
     paginated_prs = paginator.get_page(page)
     return render(request, 'pr_board.html', {'prs': paginated_prs})
 
 def information_board(request):
     informations = Information.objects.filter().order_by('-pub_date')
-    paginator = Paginator(informations, 10)
+    paginator = Paginator(informations, 20)
     page = request.GET.get('page')
     paginated_informations = paginator.get_page(page)
     return render(request, 'information_board.html', {'informations': paginated_informations})
 
 def graduate_board(request):
     graduates = Graduate.objects.filter().order_by('-pub_date')
-    paginator = Paginator(graduates, 10)
+    paginator = Paginator(graduates, 20)
     page = request.GET.get('page')
     paginated_graduates = paginator.get_page(page)
     return render(request, 'graduate_board.html', {'graduates': paginated_graduates})
