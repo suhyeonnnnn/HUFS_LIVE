@@ -15,11 +15,13 @@ def home(request):
 def detail(request, post_id):
     post_detail = get_object_or_404(Post, pk= post_id)
     comment_form = CommentForm()
+    post_detail.update_counter
     return render(request, 'free_detail.html', {'post_detail':post_detail, 'comment_form':comment_form}) 
 
 def detail_pr(request, pr_id):
     pr_detail = get_object_or_404(Pr, pk= pr_id)
     comments = pr_detail.comments.order_by("-created_on")
+    pr_detail.update_counter
     new_comment = None
     # Comment posted
     if request.method == "POST":
@@ -49,6 +51,7 @@ def detail_pr(request, pr_id):
 def detail_information(request, information_id):
     information_detail = get_object_or_404(Information, pk= information_id)
     comments = information_detail.comments.order_by("-created_on")
+    information_detail.update_counter
     new_comment = None
     # Comment posted
     if request.method == "POST":
@@ -78,6 +81,7 @@ def detail_information(request, information_id):
 def detail_graduate(request, graduate_id):
     graduate_detail = get_object_or_404(Graduate, pk= graduate_id)
     comments = graduate_detail.comments.order_by("-created_on")
+    graduate_detail.update_counter
     new_comment = None
     # Comment posted
     if request.method == "POST":

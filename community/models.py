@@ -17,8 +17,8 @@ class Post(models.Model):
 
     @property
     def update_counter(self):
-        self.hits = self.hits +1
         self.save()
+        self.hits += 1
         return self.hits
         
 # 홍보게시판
@@ -36,8 +36,8 @@ class Pr(models.Model):
         return self.body[:100] # 본문 미리보기가 100글자 까지만 보이도록
     @property
     def update_counter(self):
-        self.hits = self.hits +1
         self.save()
+        self.hits += 1
         return self.hits
 
 # 정보게시판
@@ -56,8 +56,8 @@ class Information(models.Model):
 
     @property
     def update_counter(self):
-        self.hits = self.hits +1
         self.save()
+        self.hits += 1
         return self.hits
 
 #졸업생게시판
@@ -76,8 +76,8 @@ class Graduate(models.Model):
 
     @property
     def update_counter(self):
-        self.hits = self.hits +1
         self.save()
+        self.hits += 1
         return self.hits
 
 # 댓글
