@@ -83,16 +83,18 @@ body{
 }
 .post-detail{
     flex: 7;
+    text-decoration: none;
+}
+.post-detail > div{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
-    box-sizing: border-box;
-    padding: 10px;
-    text-decoration: none;
+    height: 60px;
+    margin: 10px;
 }
 .post-title{
-    width: 700px;
+    width: 720px;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -101,7 +103,7 @@ body{
     text-align: left;
 }
 .post-main{
-    width: 700px;
+    width: 720px;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -112,21 +114,10 @@ body{
 .post-writer{
     flex: 2;
     display: flex;
+    justify-content: center;
     align-items: center;
-}
-.post-writer > div{
-    display: flex;
-    align-items: center;
-    margin-left: 48px;
-}
-.post-writer img{
-    width: 21px;
-    height: 21px;
-}
-.writer-nickname{
     font-size: 16px;
     color: #000000;
-    margin-left: 10px;
 }
 .post-date{
     flex: 2;

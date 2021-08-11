@@ -29,15 +29,12 @@
     {% for graduate in graduates %}
     <div class="post">
         <a href="{% url 'graduate_detail' graduate.id%}" class="post-detail">
-            <div class="post-title">{{graduate.title}}</div>
-            <div class="post-main">{{graduate.summary}}</div>
-        </a>
-        <div class="post-writer">
             <div>
-                <img src="{% static 'images/img-sample-user-profile@2x.png' %}">
-                <div class="writer-nickname">{{graduate.author}}</div>
+                <div class="post-title">{{graduate.title}}</div>
+                <div class="post-main">{{graduate.summary}}</div>
             </div>
-        </div>
+        </a>
+        <div class="post-writer">{{graduate.author}}</div>
         <div class="post-date"><div>{{graduate.pub_date | date:'m/d H:i' }}</div></div>
         <div class="post-views">{{graduate.update_counter}}</div>
     </div>
