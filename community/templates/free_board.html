@@ -41,9 +41,9 @@
     {%endfor%}
     <div class="pagination">
         {% if posts.has_previous %}
-        <a href="?page={{ posts.previous_page_number }}" class="prev-page"><img src="{% static 'images/keyboard-arrow-down-24px@2x.png' %}"></a>
+        <a href="?page={{ posts.previous_page_number }}" class="prev-page"><img src="{% static 'images/icon-arrow-left@2x.png' %}"></a>
         {% else %}
-        <a href="#" class="prev-page hidden"><img src="{% static 'images/keyboard-arrow-down-24px@2x.png' %}"></a>      
+        <a href="#" class="prev-page hidden"><img src="{% static 'images/icon-arrow-left@2x.png' %}"></a>      
         {% endif %}
         <div class="page-number">
             {% for page in posts.paginator.page_range %}
@@ -53,9 +53,9 @@
             {% endfor %}
         </div>
         {% if posts.has_next %}
-        <a href="?page={{ posts.next_page_number }}" class="next-page"><img src="{% static 'images/keyboard-arrow-down-24px@2x.png' %}"></a>
+        <a href="?page={{ posts.next_page_number }}" class="next-page"><img src="{% static 'images/icon-arrow-right@2x.png' %}"></a>
         {% else %}
-        <a href="#" class="next-page hidden"><img src="{% static 'images/keyboard-arrow-down-24px@2x.png' %}"></a>
+        <a href="#" class="next-page hidden"><img src="{% static 'images/icon-arrow-right@2x.png' %}"></a>
         {% endif %}
     </div>
 </body>
