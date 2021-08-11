@@ -139,7 +139,7 @@ article{
     justify-content: space-between;
 }
 .post-title{
-    width: 390px;
+    width: 450px;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -147,7 +147,7 @@ article{
     color: #000000;
 }
 .post-date{
-    width: 180px;
+    width: 120px;
     text-align: right;
     padding: 3px 0;
     font-size: 14px;
