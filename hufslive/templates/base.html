@@ -31,15 +31,10 @@
             </div>
         </div>
         <div class="nav-bar1">
-            {% url 'free_board' as url_path %}
-            {% if request.path == url_path %}
-            <a href="{% url 'free_board' %}" class="cur-url">자유게시판</a>
-            {% else %}
-            <a href="{% url 'free_board' %}">자유게시판</a>
-            {% endif %}
-            <a href="{% url 'pr_board' %}">홍보게시판</a>
-            <a href="{% url 'information_board' %}">정보게시판</a>
-            <a href="{% url 'graduate_board' %}">졸업생게시판</a>
+            <a href="{% url 'free_board' %}" class="{% if request.path == '/free/' %}cur-url{% endif %}">자유게시판</a>
+            <a href="{% url 'pr_board' %}" class="{% if request.path == '/pr/' %}cur-url{% endif %}">홍보게시판</a>
+            <a href="{% url 'information_board' %}" class="{% if request.path == '/information/' %}cur-url{% endif %}">정보게시판</a>
+            <a href="{% url 'graduate_board' %}" class="{% if request.path == '/graduate/' %}cur-url{% endif %}">졸업생게시판</a>
         </div>
     </header>
     <section class="section">
