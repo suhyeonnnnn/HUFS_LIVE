@@ -83,10 +83,9 @@ header{
     align-items: center;
     height: 70px;
     box-sizing: border-box;
-    width: 1410px;
-    min-width: 1410px;
+    width: 1386px;
+    min-width: 1386px;
     margin: 0 auto;
-    padding: 0 12px;
 }
 .nav-bar1 a{
     box-sizing: border-box;
