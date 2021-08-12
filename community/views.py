@@ -226,22 +226,22 @@ def graduate_update(request, graduate_id):
 def delete(request, post_id):
     post = Post.objects.get(id = post_id)
     post.delete()
-    return redirect("home")
+    return redirect("free_board")
 
 def pr_delete(request, pr_id):
     pr = Pr.objects.get(id = pr_id)
     pr.delete()
-    return redirect('home')
+    return redirect('pr_board')
 
 def information_delete(request, information_id):
     information = Information.objects.get(id = information_id)
     information.delete()
-    return redirect('home')
+    return redirect('information_board')
     
 def graduate_delete(request, graduate_id):
     graduate = Graduate.objects.get(id = graduate_id)
     graduate.delete()
-    return redirect('home')
+    return redirect('graduate_board')
 
 
 #게시판
@@ -275,4 +275,8 @@ def graduate_board(request):
 
 #마이페이지
 def my_page(request):
-    return render(request, 'my_page.html')
+    posts = Post.objects.filter().order_by('-pub_date')[:5]
+    prs = Pr.objects.filter().order_by('-pub_date')[:5]
+    informations = Information.objects.filter().order_by('-pub_date')[:5]
+    graduates = Graduate.objects.filter().order_by('-pub_date')[:5] 
+    return render(request, 'my_page.html', {'posts':posts, 'prs':prs, 'informations':informations, 'graduates':graduates})
