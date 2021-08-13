@@ -14,7 +14,7 @@
     <div class="login-container">
         <div class="login-text">로그인</div>
         <!-- 에러메세지 -->
-        <!-- <div class="error-message">아이디 혹은 비밀번호가 일치하지 않습니다</div>   -->
+        <div class="error-message">{{error}}</div>  
         <!-- 에러메세지 -->
         <form method = "POST" action="{%url 'login'%}">
             {% csrf_token %} <!--보안을 위한 난수 발생기-->

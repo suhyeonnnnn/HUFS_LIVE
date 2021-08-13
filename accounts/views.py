@@ -4,7 +4,9 @@ from django.contrib import auth
 
 def signup(request):
     if request.method == 'POST':
-        if request.POST['password1'] == request.POST['password2']:
+        if request.POST['password1'] != request.POST['password2']:
+            return render(request, 'signup.html', {'error': '비밀번호가 일치하지 않습니다'})
+        else:
             user = User.objects.create_user( username=request.POST['username'], first_name=request.POST['nickname'], password=request.POST['password1'])
             auth.login(request, user, backend='django.contrib.auth.backends.ModelBackend')
             return redirect('home')
@@ -19,7 +21,7 @@ def login(request):
             auth.login(request, user, backend='django.contrib.auth.backends.ModelBackend')
             return redirect('home')
         else:
-            return render(request, 'login.html', {'error': 'username or password is incorrect.'})
+            return render(request, 'login.html', {'error': '아이디 혹은 비밀번호가 일치하지 않습니다'})
     else:
         return render(request, 'login.html')
 
