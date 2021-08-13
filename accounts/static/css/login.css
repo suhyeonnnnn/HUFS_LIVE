@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+
+.section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 260px;
+}
+
+/* login */
+
+input:focus{
+    outline: none;
+}
+.login-container{
+    position: relative;
+    margin: 0 auto;
+    width: 500px;
+    height: 540px;
+}
+.login-text{
+    font-size: 18px;
+    font-weight: 500;
+    color: #606060;
+    text-align: center;
+    margin-bottom: 50px;
+}
+.login-container form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.id-input, .pw-input{
+    height: 60px;
+    width: 500px;
+    border: 1px solid #F2F2F2;
+    border-radius: 10px;
+    font-size: 18px;
+    box-sizing: border-box;
+    padding: 0 20px;
+    margin-bottom: 20px;
+}
+.id-input::placeholder, .pw-input::placeholder{
+    color: #808080;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+.id-input{
+}
+.pw-input{
+}
+.login-submit{
+    background: #3253BF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 5px 10px #0000000D;
+    border: none;
+    border-radius: 30px;
+    width: 120px;
+    height: 60px;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 500;
+    position: relative;
+    left: 380px;
+    top: 30px;
+}
+
+.signup-guide{
+    position: absolute;
+    bottom: 0px;
+    left: 151px;
+    right: 151px;
+    text-align: center;
+    font-size: 16px;
+    color: #606060;
+    display: flex;
+    justify-content: space-between;
+    width: 198px;
+}
+.signup-guide a{
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    color: #3253BF;
+}
+.ad-banner{
+    margin: 80px auto 50px;
+    width: 1280px;
+}
