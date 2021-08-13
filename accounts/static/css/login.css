@@ -44,10 +44,6 @@ input:focus{
     color: #808080;
     font-family: 'Noto Sans KR', sans-serif;
 }
-.id-input{
-}
-.pw-input{
-}
 .login-submit{
     background: #3253BF 0% 0% no-repeat padding-box;
     box-shadow: 0px 5px 10px #0000000D;
