@@ -1,3 +1,4 @@
+from django.core import paginator
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
 from .models import Post, Pr, Information, Graduate
@@ -275,8 +276,25 @@ def graduate_board(request):
 
 #마이페이지
 def my_page(request):
-    posts = Post.objects.filter().order_by('-pub_date')[:5]
-    prs = Pr.objects.filter().order_by('-pub_date')[:5]
-    informations = Information.objects.filter().order_by('-pub_date')[:5]
-    graduates = Graduate.objects.filter().order_by('-pub_date')[:5] 
-    return render(request, 'my_page.html', {'posts':posts, 'prs':prs, 'informations':informations, 'graduates':graduates})
+    posts = Post.objects.filter().order_by('-pub_date')
+    paginator1 = Paginator(posts, 5)
+    page1 = request.GET.get('page1')
+    paginated_posts = paginator1.get_page(page1)
+
+    prs = Pr.objects.filter().order_by('-pub_date')
+    paginator2 = Paginator(prs, 5)
+    page2 = request.GET.get('page2')
+    paginated_prs = paginator2.get_page(page2)
+
+    informations = Information.objects.filter().order_by('-pub_date')
+    paginator3 = Paginator(informations, 5)
+    page3 = request.GET.get('page3')
+    paginated_informations = paginator3.get_page(page3)
+
+    graduates = Graduate.objects.filter().order_by('-pub_date')
+    paginator4 = Paginator(graduates, 5)
+    page4 = request.GET.get('page4')
+    paginated_graduates = paginator4.get_page(page4)
+
+
+    return render(request, 'my_page.html', {'posts':paginated_posts, 'prs':paginated_prs, 'informations':paginated_informations, 'graduates':paginated_graduates})

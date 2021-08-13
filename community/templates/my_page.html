@@ -4,7 +4,7 @@
     <h3>내가 쓴 글<h3>
     <div>
         <h4>자유게시판</h4>
-        {% for post in posts.all %}
+        {% for post in posts %}
         {% if post.author == user %}
         <a href="{% url 'free_detail' post.id%}" class="post">
             <div class="post-detail1">
@@ -19,10 +19,20 @@
         </a>
         {% endif %}
         {% endfor %}
+        <div class="container">
+            {#First Previous#}
+            {%if posts.has_previous%}
+            <a href="?page1={{posts.previous_page_number}}">Previous</a>
+            {%endif%}
+            {# Next Last #}
+            {%if posts.has_next%}
+            <a href="?page1={{posts.next_page_number}}">Next</a>
+            {%endif%}   
+        </div>
     </div>
     <div>
         <h4>홍보게시판</h4>
-        {% for pr in prs.all %}
+        {% for pr in prs %}
         {% if pr.author == user %}
         <a href="{% url 'pr_detail' pr.id%}" class="post">
             <div class="post-detail1">
@@ -37,10 +47,20 @@
         </a>
         {% endif %}
         {% endfor %}
+        <div class="container">
+            {#First Previous#}
+            {%if prs.has_previous%}
+            <a href="?page2={{prs.previous_page_number}}">Previous</a>
+            {%endif%}
+            {# Next Last #}
+            {%if prs.has_next%}
+            <a href="?page2={{prs.next_page_number}}">Next</a>
+            {%endif%}   
+        </div>
     </div>
     <div>
         <h4>정보게시판</h4>
-        {% for information in informations.all %}
+        {% for information in informations %}
         {% if information.author == user %}
         <a href="{% url 'information_detail' information.id%}" class="post">
             <div class="post-detail1">
@@ -55,10 +75,20 @@
         </a>
         {% endif %}
         {% endfor %}
+        <div class="container">
+            {#First Previous#}
+            {%if informations.has_previous%}
+            <a href="?page3={{informations.previous_page_number}}">Previous</a>
+            {%endif%}
+            {# Next Last #}
+            {%if informations.has_next%}
+            <a href="?page3={{informations.next_page_number}}">Next</a>
+            {%endif%}   
+        </div>
     </div>
     <div>
         <h4>졸업생게시판</h4>
-        {% for graduate in graduates.all %}
+        {% for graduate in graduates %}
         {% if graduate.author == user %}
         <a href="{% url 'graduate_detail' graduate.id%}" class="post">
             <div class="post-detail1">
@@ -73,6 +103,16 @@
         </a>
         {% endif %}
         {% endfor %}
+        <div class="container">
+            {#First Previous#}
+            {%if graduates.has_previous%}
+            <a href="?page4={{graduates.previous_page_number}}">Previous</a>
+            {%endif%}
+            {# Next Last #}
+            {%if graduates.has_next%}
+            <a href="?page4={{graduates.next_page_number}}">Next</a>
+            {%endif%}   
+        </div>
     </div>
 </div>
 
