@@ -18,7 +18,7 @@
     <div class="post">
         <div class="post-title">{{pr_detail.title}}</div>
         <div class="post-info">
-            <div class="post-writer">{{pr_detail.author}}</div>
+            <div class="post-writer">{{pr_detail.author.first_name}}</div>
             <div class="post-date"><div>{{pr_detail.pub_date | date:'m/d H:i' }}</div></div>
             <div class="post-views">조회수 {{pr_detail.update_counter}}</div>
         </div>
