@@ -25,6 +25,14 @@ input:focus{
     text-align: center;
     margin-bottom: 50px;
 }
+.error-message{
+    width: 500px;
+    text-align: center;
+    color: #BC2B2B;
+    font-size: 16px;
+    position: absolute;
+    top: 34px;
+}
 .signup-container form{
     display: flex;
     flex-direction: column;

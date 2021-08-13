@@ -12,9 +12,18 @@
 </head>
 <body>
     <div class="signup-container">
+        <div class="signup-text">회원가입</div>
+        <!-- 에러메세지 -->
+        <!-- <div class="error-message">모든 항목을 필수로 입력해주셔야 합니다</div> -->
+        <!-- <div class="error-message">이미 존재하는 아이디입니다</div> -->
+        <!-- <div class="error-message">아이디는 6자 이상 16자 미만이어야 합니다</div> -->
+        <!-- <div class="error-message">이미 존재하는 닉네임입니다</div> -->
+        <!-- <div class="error-message">닉네임은 2자 이상 12자 미만이어야 합니다</div> -->
+        <!-- <div class="error-message">비밀번호는 영문+숫자 조합으로 8자 이상 20자 미만이어야 합니다</div> -->
+        <!-- <div class="error-message">비밀번호가 일치하지 않습니다</div> -->
+        <!-- 에러메세지 -->
         <form method = "POST" action="{%url 'signup'%}">
             {% csrf_token %} <!--보안을 위한 난수 발생기-->
-            <div class="signup-text">회원가입</div>
             <input name="username" type="text" placeholder="아이디 (16자 미만)" class="input id-input">
             <input name="nickname" type="text" placeholder="닉네임 (12자 미만)" class="input nm-input">
             <input name="password1" type="password" placeholder="비밀번호 (영문+숫자 조합으로 8자~20자)" class="input pw1-input">
