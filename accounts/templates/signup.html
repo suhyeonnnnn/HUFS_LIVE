@@ -1,3 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    {% block extrahead %}
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}">
+    {% endblock %}
+</head>
+<body>
+    <div class="signup-container">
+        <form method = "POST" action="{%url 'signup'%}">
+            {% csrf_token %} <!--보안을 위한 난수 발생기-->
+            <div class="signup-text">회원가입</div>
+            <input name="username" type="text" placeholder="아이디 (16자 미만)" class="input id-input">
+            <input name="nickname" type="text" placeholder="닉네임 (12자 미만)" class="input nm-input">
+            <input name="password1" type="password" placeholder="비밀번호 (영문+숫자 조합으로 8자~20자)" class="input pw1-input">
+            <input name="password2" type="password" placeholder="비밀번호 확인" class="input pw2-input">
+            <div class="button-containor"><input type="submit" value="가입하기" class="signup-submit btn btn-primary"></div>
+        </form>
+        <div class="login-guide">
+            <span>이미 회원이신가요?</span>
+            <a href="{% url 'login' %}">로그인</a>
+        </div>
+    </div>
+    <div class="ad-banner"><img src="{% static 'images/img-sample-banner@2x.png' %}"></div>
+</body>
+</html>
+{% endblock %}
+
 <div class="container">
     <h1>Sign up!</h1>
 
