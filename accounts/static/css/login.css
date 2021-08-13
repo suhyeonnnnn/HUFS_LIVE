@@ -62,6 +62,7 @@ input:focus{
     position: relative;
     left: 380px;
     top: 30px;
+    cursor: pointer;
 }
 
 .signup-guide{
