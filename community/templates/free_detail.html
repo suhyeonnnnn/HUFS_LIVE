@@ -15,7 +15,7 @@
     <div class="post">
         <div class="post-title">{{post_detail.title}}</div>
         <div class="post-info">
-            <div class="post-writer">{{post_detail.author}}</div>
+            <div class="post-writer">{{post_detail.author.first_name}}</div>
             <div class="post-date"><div>{{post_detail.pub_date | date:'m/d H:i' }}</div></div>
             <div class="post-views">조회수 {{post_detail.update_counter}}</div>
         </div>

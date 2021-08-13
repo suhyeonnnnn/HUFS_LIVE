@@ -5,7 +5,7 @@ from django.contrib import auth
 def signup(request):
     if request.method == 'POST':
         if request.POST['password1'] == request.POST['password2']:
-            user = User.objects.create_user( username=request.POST['username'], password=request.POST['password1'])
+            user = User.objects.create_user( username=request.POST['username'], first_name=request.POST['nickname'], password=request.POST['password1'])
             auth.login(request, user, backend='django.contrib.auth.backends.ModelBackend')
             return redirect('home')
     return render(request, 'signup.html')
