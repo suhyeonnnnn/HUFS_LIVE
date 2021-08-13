@@ -11,7 +11,10 @@
     {% endblock %}
 </head>
 <body>
-    <div class="board-btn">자유게시판</div>
+    <div class="board-bar">
+        <a href="javascript:history.back();"><img src="{% static 'images/icon-arrow-right-white@2x.png' %}"></a>
+        <span>자유게시판</span>
+    </div>
     <div class="post">
         <div class="post-title">{{post_detail.title}}</div>
         <div class="post-info">
