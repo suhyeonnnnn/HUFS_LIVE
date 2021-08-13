@@ -16,7 +16,7 @@
             <div class="top-bar-btn">
                 {% if user.is_authenticated %}
                 <div class="my-profile">
-                    <div class="my-nickname">{{ user.username }}</div>
+                    <div class="my-nickname">{{ user.first_name }}</div>
                     <span>님</span>
                 </div>
                 <a href="{% url 'my_page' %}" class="mypage-btn"><img src="{% static 'images/button-header-mypage@2x.png' %}"></a>
