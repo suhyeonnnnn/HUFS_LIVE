@@ -1,0 +1,144 @@
+.section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* post detail */
+
+.board-btn{
+    width: 1280px;
+    margin: 76px auto 71px;
+    color: #606060;
+    font-size: 14px;
+}
+.post{
+    display: flex;
+    flex-direction: column;
+    width: 1280px;
+    margin: 0 auto;
+}
+.post-title{
+    color: #000000;
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+.post-info{
+    display: flex;
+    font-size: 14px;
+}
+.post-writer{
+    color: #000000;
+    margin-right: 5px;
+}
+.post-date{
+    color: #808080;
+    margin: 0 10px;
+    width: 80px;
+}
+.post-views{
+    color: #808080;
+}
+.post-main{
+    color: #313131;
+    font-size: 18px;
+    margin: 51px 0 30px;
+}
+.post-btn{
+    display: flex;
+    justify-content: flex-end;
+    height: 37px;
+}
+.post-btn a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    height: 37px;
+    width: 92px;
+    font-size: 14px;
+    margin-left: 20px;
+
+}
+.post-btn a img{
+    margin-right: 8px;
+}
+.update-btn{
+    color: #808080;
+}
+.delete-btn{
+    color: #A03131;
+}
+
+/* comments */
+
+.comment-container{
+    display: flex;
+    flex-direction: column;
+    width: 1280px;
+    margin: 50px auto 80px;
+}
+.comment-stat{
+    color: #606060;
+    font-size: 14px;
+}
+.new-comment{
+    margin: 20px 0 20px 22px;
+    position: relative;
+}
+.new-comment-text{
+    width: 1258px;
+    height: 100px;
+    font-size: 16px;
+    border: 1px solid #F2F2F2;
+    border-radius: 5px;
+    padding: 20px 110px 20px 20px;
+    box-sizing: border-box;
+    resize: none;
+}
+.new-comment-btn{
+    position: absolute;
+    background: #3253BF 0% 0% no-repeat padding-box;
+    border-radius: 5px;
+    border: none;
+    font-size: 14px;
+    font-weight: 500;
+    color: #FFFFFF;
+    height: 40px;
+    width: 70px;
+    box-sizing: border-box;
+    padding: 10px 22px;
+    top: 40px;
+    right: 20px;
+}
+.comments{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 30px 10px 20px;
+}
+.comment-info{
+    display: flex;
+}
+.comment-writer{
+    font-size: 14px;
+    font-weight: 500;
+    color: #404040;
+}
+.comment-date{
+    font-size: 14px;
+    color: #8D8D8D;
+    margin-left: 10px;
+}
+.comment-text{
+    font-size: 16px;
+    color: #404040;
+    margin-top: 8px;
+}
+
+/* bottom ad banner */
+
+.ad-banner{
+    margin: 0 auto 100px;
+    width: 1280px;
+}
