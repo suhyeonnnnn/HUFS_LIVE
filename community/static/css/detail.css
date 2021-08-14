@@ -122,6 +122,7 @@
     padding: 10px 22px;
     top: 40px;
     right: 20px;
+    cursor: pointer;
 }
 .comments{
     box-sizing: border-box;
