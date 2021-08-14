@@ -26,32 +26,32 @@ urlpatterns = [
     path('signup/',accounts.views.signup, name="signup"),
     path('logout/', accounts.views.logout, name="logout"),
 
-    path('post/<int:post_id>', community.views.detail, name="free_detail"),
+    path('free/<int:free_id>', community.views.detail, name="free_detail"),
     path('pr/<int:pr_id>', community.views.detail_pr, name="pr_detail"),
     path('information/<int:information_id>', community.views.detail_information, name="information_detail"),
     path('graduate/<int:graduate_id>', community.views.detail_graduate, name="graduate_detail"),
 
-    path('post/new/', community.views.new, name="free_new"),
+    path('free/new/', community.views.new, name="free_new"),
     path('pr/new/', community.views.pr_new, name="pr_new"),
     path('information/new/', community.views.information_new, name="information_new"),
     path('graduate/new/', community.views.graduate_new, name="graduate_new"),
 
 
-    path('post/create/', community.views.create, name="create"),
+    path('free/create/', community.views.create, name="create"),
     path('pr/create/', community.views.pr_create, name="pr_create"),
     path('information/create/', community.views.information_create, name="information_create"),
     path('graduate/create/', community.views.graduate_create, name="graduate_create"),
 
     path('accounts/', include('allauth.urls')),
-    path('new_comment/<int:post_id>', community.views.new_comment, name='new_comment'),
+    path('new_comment/<int:free_id>', community.views.new_comment, name='new_comment'),
 
-    path('update/<int:post_id>', community.views.update, name='free_update'),
+    path('update/<int:free_id>', community.views.update, name='free_update'),
     path('pr/update/<int:pr_id>', community.views.pr_update, name="pr_update"),
     path('information/update/<int:information_id>', community.views.information_update, name="information_update"),
     path('graduate/update/<int:graduate_id>', community.views.graduate_update, name="graduate_update"),
 
 
-    path('delete/<int:post_id>', community.views.delete, name='delete'),
+    path('delete/<int:free_id>', community.views.delete, name='delete'),
     path('pr/delete/<int:pr_id>', community.views.pr_delete, name="pr_delete"),
     path('information/delete/<int:information_id>', community.views.information_delete, name="information_delete"),
     path('graduate/delete/<int:graduate_id>', community.views.graduate_delete, name="graduate_delete"),
