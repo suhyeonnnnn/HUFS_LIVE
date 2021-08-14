@@ -12,10 +12,10 @@
 </head>
     <div class="board-bar">
         <a href="javascript:history.back();"><img src="{% static 'images/icon-arrow-right-white@2x.png' %}"></a>
-        <span>자유게시판</span>
+        <span>졸업생게시판</span>
     </div>
     <div class="new-post">
-        <div class="board-name">자유게시판</div>
+        <div class="board-name">졸업생게시판</div>
         <form action="{% url 'graduate_update' graduate.id %}" method = "POST">
             {% csrf_token %}
             <input type="text" name="title" value={{graduate.title}} placeholder="제목 입력" class="title-input">
