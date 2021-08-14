@@ -1,11 +1,32 @@
-<h1> 여기는 수정 페이지 </h1>
-<form action="{% url 'pr_update' pr.id %}" method = "POST">
-    {% csrf_token %}
-<h4>제목: </h4>
-<input type="text" name="title" value={{pr.title}}>
-<br>
-<br>
-<h4>본문: </h4>
-<textarea name="body" cols="30" rows="10">{{pr.body}}</textarea><br><br>
-<input type="submit" value="완료">
-</form>
+{% extends 'base.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    {% block extrahead %}
+    <link rel="stylesheet" href="{% static 'css/new.css' %}">
+    {% endblock %}
+</head>
+    <div class="board-bar">
+        <a href="javascript:history.back();"><img src="{% static 'images/icon-arrow-right-white@2x.png' %}"></a>
+        <span>자유게시판</span>
+    </div>
+    <div class="new-post">
+        <div class="board-name">자유게시판</div>
+        <form action="{% url 'pr_update' pr.id %}" method = "POST">
+            {% csrf_token %}
+            <input type="text" name="title" value={{pr.title}} placeholder="제목 입력" class="title-input">
+            <textarea name="body" placeholder="외대생들의 온라인 놀이터, 훕스라이브" class="main-input">{{pr.body}}</textarea>
+            <div class="new-post-btn">
+                <a href="javascript:history.back();">취소</a>
+                <input class="btn btn-dark" type="submit" value="">
+            </div>
+        </form>    
+    </div>
+<body>
+</body>
+</html>
+{% endblock %}
