@@ -3,9 +3,9 @@
 <div>
     <h3>내가 쓴 글<h3>
     <div>
-        <h4>자유게시판</h4>
         {% for post in posts %}
         {% if post.author == user %}
+        <h4>자유게시판</h4>
         <a href="{% url 'free_detail' post.id%}" class="post">
             <div class="post-detail1">
                 <div class="post-title">{{post.title}}</div>
@@ -31,9 +31,9 @@
         </div>
     </div>
     <div>
-        <h4>홍보게시판</h4>
         {% for pr in prs %}
         {% if pr.author == user %}
+        <h4>홍보게시판</h4>
         <a href="{% url 'pr_detail' pr.id%}" class="post">
             <div class="post-detail1">
                 <div class="post-title">{{pr.title}}</div>
@@ -59,9 +59,9 @@
         </div>
     </div>
     <div>
-        <h4>정보게시판</h4>
         {% for information in informations %}
         {% if information.author == user %}
+        <h4>정보게시판</h4>
         <a href="{% url 'information_detail' information.id%}" class="post">
             <div class="post-detail1">
                 <div class="post-title">{{information.title}}</div>
@@ -87,9 +87,9 @@
         </div>
     </div>
     <div>
-        <h4>졸업생게시판</h4>
         {% for graduate in graduates %}
         {% if graduate.author == user %}
+        <h4>졸업생게시판</h4>
         <a href="{% url 'graduate_detail' graduate.id%}" class="post">
             <div class="post-detail1">
                 <div class="post-title">{{graduate.title}}</div>

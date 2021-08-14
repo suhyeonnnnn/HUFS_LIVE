@@ -14,8 +14,8 @@ def home(request):
     return render(request, 'home.html', {'posts':posts, 'prs':prs, 'informations':informations, 'graduates':graduates})
 
 #상세 페이지
-def detail(request,  post_id):
-    post_detail = get_object_or_404(Post, pk= post_id)
+def detail(request,  free_id):
+    post_detail = get_object_or_404(Post, pk= free_id)
     comments = post_detail.comments.order_by("-date")
     new_comment = None
     # Comment posted
@@ -46,13 +46,13 @@ def detail(request,  post_id):
     if request.COOKIES.get(cookie_name) is not None:
         cookies = request.COOKIES.get(cookie_name)
         cookies_list = cookies.split('|')
-        if str(post_id) not in cookies_list:
-            response.set_cookie(cookie_name, cookies + f'|{post_id}', expires=None)
+        if str(free_id) not in cookies_list:
+            response.set_cookie(cookie_name, cookies + f'|{free_id}', expires=None)
             post_detail.hits += 1
             post_detail.save()
             return response
     else:
-        response.set_cookie(cookie_name, post_id, expires=None)
+        response.set_cookie(cookie_name, free_id, expires=None)
         post_detail.hits += 1
         post_detail.save()
         return response
@@ -61,8 +61,8 @@ def detail(request,  post_id):
 
 
 #기존 detail
-#def detail(request, post_id):
-    post_detail = get_object_or_404(Post, pk= post_id)
+#def detail(request, free_id):
+    post_detail = get_object_or_404(Post, pk= free_id)
     comment_form = CommentForm()
     post_detail.update_counter
     return render(request, 'free_detail.html', {'post_detail':post_detail, 'comment_form':comment_form}) 
@@ -319,7 +319,7 @@ def create(request): #new.html의 form에서 입력받은 내용을 DB로 넣어
     community.body = request.GET['body']
     community.pub_date = timezone.datetime.now()
     community.save() #객체에 해당하는 내용들을 /admin 에 저장
-    return redirect('/post/'+str(community.id)) #글 작성을 완료하면 해당 글 detail이 뜨도록
+    return redirect('/free/'+str(community.id)) #글 작성을 완료하면 해당 글 detail이 뜨도록
 
 def pr_create(request): 
     community = Pr()
@@ -349,17 +349,17 @@ def graduate_create(request):
     return redirect('/graduate/'+str(community.id)) 
 
 # 댓글 저장
-def new_comment(request, post_id) : 
+def new_comment(request, free_id) : 
     filled_form = CommentForm(request.POST)
     if filled_form.is_valid() : 
         # 바로 저장하지 않고
         finished_form = filled_form.save(commit=False)
         # models.py > class Comment > post 정보 확인하여 연결된 게시글 확인
         # 모델객체안에 필요한 정보를 채우고
-        finished_form.post = get_object_or_404(Post, pk=post_id)
+        finished_form.post = get_object_or_404(Post, pk=free_id)
         # 저장한다.
         finished_form.save()
-    return redirect('free_detail', post_id) # 댓글작성한 상세페이지로 이동
+    return redirect('free_detail', free_id) # 댓글작성한 상세페이지로 이동
 
 #def Prnew_comment(request, pr_id) : 
     filled_form = PrCommentForm(request.POST)
@@ -375,8 +375,8 @@ def new_comment(request, post_id) :
 
 
 # update
-def update(request, post_id):
-    post = Post.objects.get(id = post_id)
+def update(request, free_id):
+    post = Post.objects.get(id = free_id)
     if request.method == "POST":
         post.title = request.POST["title"]
         post.body = request.POST["body"]
@@ -413,8 +413,8 @@ def graduate_update(request, graduate_id):
 
 
 # delete
-def delete(request, post_id):
-    post = Post.objects.get(id = post_id)
+def delete(request, free_id):
+    post = Post.objects.get(id = free_id)
     post.delete()
     return redirect("free_board")
 

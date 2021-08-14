@@ -37,6 +37,7 @@
         </div>
     </div>
     <div class="comment-container">
+        {% if user.is_authenticated %}
         <div class="comment-stat">댓글</div>
         <div class="new-comment"></div>
             <form method="POST">
@@ -45,11 +46,11 @@
                 <input type="submit" value="댓글 입력">
             </form>
         </div>
+        {% endif %}
 
         {% for comment in comments %}
         <div class="comments">
             <div class="comment-info">
-                <div class="comment-writer">{{ user.first_name }}</div>
                 <div class="comment-date">{{ comment.date | date:'m/d H:i' }}</div>
             </div>    
             <div class="comment-text">{{ comment }}</div>
