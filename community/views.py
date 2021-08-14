@@ -4,6 +4,7 @@ from django.utils import timezone
 from .models import Post, Pr, Information, Graduate
 from .forms import PostForm, CommentForm, PrCommentForm, GradCommentForm, InfoCommentForm #forms.py의 PostForm 객체 불러오기
 from django.core.paginator import Paginator
+from datetime import date, datetime, timedelta
 
 def home(request):
     posts = Post.objects.filter().order_by('-pub_date')[:5]
@@ -13,13 +14,106 @@ def home(request):
     return render(request, 'home.html', {'posts':posts, 'prs':prs, 'informations':informations, 'graduates':graduates})
 
 #상세 페이지
-def detail(request, post_id):
+def detail(request,  post_id):
+    post_detail = get_object_or_404(Post, pk= post_id)
+    comments = post_detail.comments.order_by("-date")
+    new_comment = None
+    # Comment posted
+    if request.method == "POST":
+        comment_form = CommentForm(data=request.POST)
+        if comment_form.is_valid():
+            # Create Comment object but don't save to database yet
+            new_comment = comment_form.save(commit=False)
+            # Assign the current post to the comment
+            new_comment.post = post_detail
+            # Save the comment to the database
+            new_comment.save()
+    else:
+        comment_form = CommentForm()
+    
+
+    session_cookie = request.session.get('user')
+    cookie_name = F'hits:{session_cookie}'
+    context = {
+        'post_detail':post_detail, 
+        "comments": comments,
+        "new_comment": new_comment,
+        "comment_form": comment_form,
+        }
+
+    response = render(request, 'free_detail.html', context)
+
+    if request.COOKIES.get(cookie_name) is not None:
+        cookies = request.COOKIES.get(cookie_name)
+        cookies_list = cookies.split('|')
+        if str(post_id) not in cookies_list:
+            response.set_cookie(cookie_name, cookies + f'|{post_id}', expires=None)
+            post_detail.hits += 1
+            post_detail.save()
+            return response
+    else:
+        response.set_cookie(cookie_name, post_id, expires=None)
+        post_detail.hits += 1
+        post_detail.save()
+        return response
+
+    return render(request, 'free_detail.html', context)
+
+
+#기존 detail
+#def detail(request, post_id):
     post_detail = get_object_or_404(Post, pk= post_id)
     comment_form = CommentForm()
     post_detail.update_counter
     return render(request, 'free_detail.html', {'post_detail':post_detail, 'comment_form':comment_form}) 
 
 def detail_pr(request, pr_id):
+    pr_detail = get_object_or_404(Pr, pk= pr_id)
+    comments = pr_detail.comments.order_by("-date")
+    new_comment = None
+    # Comment posted
+    if request.method == "POST":
+        comment_form = PrCommentForm(data=request.POST)
+        if comment_form.is_valid():
+            # Create Comment object but don't save to database yet
+            new_comment = comment_form.save(commit=False)
+            # Assign the current post to the comment
+            new_comment.post = pr_detail
+            # Save the comment to the database
+            new_comment.save()
+    else:
+        comment_form = PrCommentForm()
+
+    session_cookie = request.session.get('user')
+    cookie_name = F'hits:{session_cookie}'
+
+    context = {
+            "pr_detail": pr_detail,
+            "comments": comments,
+            "new_comment": new_comment,
+            "comment_form": comment_form,
+        }
+
+    response = render(request, 'pr_detail.html', context)
+
+    if request.COOKIES.get(cookie_name) is not None:
+        cookies = request.COOKIES.get(cookie_name)
+        cookies_list = cookies.split('|')
+        if str(pr_id) not in cookies_list:
+            response.set_cookie(cookie_name, cookies + f'|{pr_id}', expires=None)
+            pr_detail.hits += 1
+            pr_detail.save()
+            return response
+    else:
+        response.set_cookie(cookie_name, pr_id, expires=None)
+        pr_detail.hits += 1
+        pr_detail.save()
+        return response   
+
+    return render(request, 'pr_detail.html', context)
+
+#기존 pr
+#def detail_pr(request, pr_id):
     pr_detail = get_object_or_404(Pr, pk= pr_id)
     comments = pr_detail.comments.order_by("-created_on")
     pr_detail.update_counter
@@ -48,8 +142,54 @@ def detail_pr(request, pr_id):
             "comment_form": comment_form,
         },
     )
-    
+
 def detail_information(request, information_id):
+    information_detail = get_object_or_404(Information, pk= information_id)
+    comments = information_detail.comments.order_by("-date")
+    new_comment = None
+    # Comment posted
+    if request.method == "POST":
+        comment_form = InfoCommentForm(data=request.POST)
+        if comment_form.is_valid():
+            # Create Comment object but don't save to database yet
+            new_comment = comment_form.save(commit=False)
+            # Assign the current post to the comment
+            new_comment.post = information_detail
+            # Save the comment to the database
+            new_comment.save()
+    else:
+        comment_form = InfoCommentForm()
+    
+    session_cookie = request.session.get('user')
+    cookie_name = F'hits:{session_cookie}'
+
+    context = {
+            "information_detail": information_detail,
+            "comments": comments,
+            "new_comment": new_comment,
+            "comment_form": comment_form,
+        }
+
+    response = render(request, 'information_detail.html', context)
+
+    if request.COOKIES.get(cookie_name) is not None:
+        cookies = request.COOKIES.get(cookie_name)
+        cookies_list = cookies.split('|')
+        if str(information_id) not in cookies_list:
+            response.set_cookie(cookie_name, cookies + f'|{information_id}', expires=None)
+            information_detail.hits += 1
+            information_detail.save()
+            return response
+    else:
+        response.set_cookie(cookie_name, information_id, expires=None)
+        information_detail.hits += 1
+        information_detail.save()
+        return response 
+
+    return render(request,'information_detail.html',context)
+
+#기존 info    
+#def detail_information(request, information_id):
     information_detail = get_object_or_404(Information, pk= information_id)
     comments = information_detail.comments.order_by("-created_on")
     information_detail.update_counter
@@ -78,8 +218,57 @@ def detail_information(request, information_id):
             "comment_form": comment_form,
         },
     )
-    
+
+
 def detail_graduate(request, graduate_id):
+    graduate_detail = get_object_or_404(Graduate, pk= graduate_id)
+    comments = graduate_detail.comments.order_by("-date")
+
+    new_comment = None
+    # Comment posted
+    if request.method == "POST":
+        comment_form = GradCommentForm(data=request.POST)
+        if comment_form.is_valid():
+
+            # Create Comment object but don't save to database yet
+            new_comment = comment_form.save(commit=False)
+            # Assign the current post to the comment
+            new_comment.post = graduate_detail
+            # Save the comment to the database
+            new_comment.save()
+    else:
+        comment_form = GradCommentForm()
+
+    session_cookie = request.session.get('user')
+    cookie_name = F'hits:{session_cookie}'
+
+    context = {
+            "graduate_detail": graduate_detail,
+            "comments": comments,
+            "new_comment": new_comment,
+            "comment_form": comment_form,
+        }
+
+    response = render(request, 'information_detail.html', context)
+
+    if request.COOKIES.get(cookie_name) is not None:
+        cookies = request.COOKIES.get(cookie_name)
+        cookies_list = cookies.split('|')
+        if str(graduate_id) not in cookies_list:
+            response.set_cookie(cookie_name, cookies + f'|{graduate_id}', expires=None)
+            graduate_detail.hits += 1
+            graduate_detail.save()
+            return response
+    else:
+        response.set_cookie(cookie_name, graduate_id, expires=None)
+        graduate_detail.hits += 1
+        graduate_detail.save()
+        return response 
+
+    return render(request,'graduate_detail.html',context)
+
+#기존 grad    
+#def detail_graduate(request, graduate_id):
     graduate_detail = get_object_or_404(Graduate, pk= graduate_id)
     comments = graduate_detail.comments.order_by("-created_on")
     graduate_detail.update_counter

@@ -5,26 +5,33 @@ admin.site.register(Post)
 admin.site.register(Pr)
 admin.site.register(Information)
 admin.site.register(Graduate)
-admin.site.register(Comment)
+#admin.site.register(Comment)
 #admin.site.register(PrComment)
+
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ('comment',  'post', 'date')
+
+    def approve_comments(self, request, queryset):
+        queryset.update(active=True)
 
 @admin.register(PrComment)
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ('comment',  'post', 'created_on')
+    list_display = ('comment',  'post', 'date')
 
     def approve_comments(self, request, queryset):
         queryset.update(active=True)
 
 @admin.register(InfoComment)
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ('comment',  'post', 'created_on')
+    list_display = ('comment',  'post', 'date')
 
     def approve_comments(self, request, queryset):
         queryset.update(active=True)
 
 @admin.register(GradComment)
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ('comment',  'post', 'created_on')
+    list_display = ('comment',  'post', 'date')
 
     def approve_comments(self, request, queryset):
         queryset.update(active=True)

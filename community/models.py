@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django import forms
 
 # 자유게시판
 class Post(models.Model):
@@ -84,10 +85,10 @@ class Graduate(models.Model):
 class Comment(models.Model):
     comment = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
-
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     #Post를 참조(foreign)함
     #댓글달린 게시글이 삭제되면 참조객체도 삭제
-    post = models.ForeignKey(Post, null=True, blank=True, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, null=True, blank=True, on_delete=models.CASCADE, related_name ='comments')
 
     #게시글 작성시 DB에 title이 나오도록 함
     def __str__(self):
@@ -96,8 +97,8 @@ class Comment(models.Model):
 #홍보게시판 댓글
 class PrComment(models.Model):
     comment = models.TextField()
-    created_on = models.DateTimeField(auto_now_add=True)
-
+    date = models.DateTimeField(auto_now_add=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     #Post를 참조(foreign)함
     #댓글달린 게시글이 삭제되면 참조객체도 삭제
     post = models.ForeignKey(Pr, null=True, blank=True, on_delete=models.CASCADE, related_name ='comments')
@@ -109,8 +110,8 @@ class PrComment(models.Model):
 #졸업생게시판 댓글
 class GradComment(models.Model):
     comment = models.TextField()
-    created_on = models.DateTimeField(auto_now_add=True)
-
+    date = models.DateTimeField(auto_now_add=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     #Post를 참조(foreign)함
     #댓글달린 게시글이 삭제되면 참조객체도 삭제
     post = models.ForeignKey(Graduate, null=True, blank=True, on_delete=models.CASCADE, related_name ='comments')
@@ -122,12 +123,12 @@ class GradComment(models.Model):
 #정보게시판 댓글
 class InfoComment(models.Model):
     comment = models.TextField()
-    created_on = models.DateTimeField(auto_now_add=True)
-
+    date = models.DateTimeField(auto_now_add=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     #Post를 참조(foreign)함
     #댓글달린 게시글이 삭제되면 참조객체도 삭제
     post = models.ForeignKey(Information, null=True, blank=True, on_delete=models.CASCADE, related_name ='comments')
 
     #게시글 작성시 DB에 title이 나오도록 함
     def __str__(self):
-        return self.comment      
+        return self.comment
