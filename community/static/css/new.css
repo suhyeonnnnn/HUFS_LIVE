@@ -1,0 +1,93 @@
+.board-bar{
+    display: flex;
+    width: 1280px;
+    margin: 65px auto 30px;
+}
+.board-bar a{
+    height: 42px;
+    width: 42px;
+}
+.board-bar a img{
+    filter: drop-shadow(0px 3px 10px #00000014);
+}
+.board-bar span{
+    width: 1280px;
+    color: #606060;
+    font-size: 14px;
+    margin: 11px 20px;
+}
+.new-post{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 1280px;
+    height: 593px;
+    margin: 0 auto;
+    border: 1px solid #F2F2F2;
+    border-radius: 10px;
+    box-sizing: border-box;
+    padding: 30px;
+    margin-bottom: 170px;
+}
+.new-post form{
+    width: 1220px;
+}
+.board-name{
+    color: #2E3036;
+    font-size: 14px;
+    width: 1220px;
+    margin-bottom: 30px;
+}
+.title-input{
+    display: in;
+    font-size: 22px;
+    color: #1C1C1C;
+    width: 1220px;
+    height: 43px;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 1px solid #C9C9C9;;
+}
+.title-input:focus, .main-input:focus{
+    outline: none;
+}
+.title-input::placeholder, .main-input::placeholder{
+    color: #808080;
+}
+.main-input{
+    font-size: 16px;
+    color: #1C1C1C;
+    width: 1220px;
+    height: 300px;
+    border: none;
+    overflow: auto;
+    margin: 30px 0 50px;
+    box-sizing: border-box;
+    resize: none;
+}
+.new-post-btn{
+    display: flex;
+    justify-content: flex-end;
+    height: 60px;
+}
+.new-post-btn a{
+    text-decoration: none;
+    height: 60px;
+    width: 100px;
+    margin-right: 20px;
+    color: #606060;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 20px 37px;
+    box-sizing: border-box;
+    display: block;
+}
+.new-post-btn input{
+    background:url("../images/button-register-post@2x.png"); 
+    background-position: 0px 0px;
+    background-repeat: no-repeat; 
+    width: 150px;
+    height: 60px;
+    border: 0; 
+    cursor: pointer;
+}
