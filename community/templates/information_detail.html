@@ -20,7 +20,7 @@
         <div class="post-info">
             <div class="post-writer">{{information_detail.author.first_name}}</div>
             <div class="post-date"><div>{{information_detail.pub_date | date:'m/d H:i' }}</div></div>
-            <div class="post-views">조회수 {{information_detail.update_counter}}</div>
+            <div class="post-views">조회수 {{information_detail.hits}}</div>
         </div>
         <div class="post-main">{{information_detail.body}}</div>
         <div class="post-btn">
@@ -31,37 +31,27 @@
         </div>
     </div>
     <div class="comment-container">
-        <div class="comment-stat">댓글 4</div>
-        <div class="new-comment">
-            <textarea class="new-comment-text" placeholder="댓글 쓰기 ..." maxlength="200"></textarea>
-            <input type="submit" class="new-comment-btn" value="등록">
+        <div class="comment-stat">댓글</div>
+        <div class="new-comment"></div>
+            <form method="POST">
+                {% csrf_token %}
+                {{ comment_form  }}
+                <input type="submit" value="댓글 입력">
+            </form>
         </div>
+
+        {% for comment in comments %}
         <div class="comments">
             <div class="comment-info">
-                <div class="comment-writer">수현도사</div>
-                <div class="comment-date">04:50 PM</div>
-            </div>
-            <div class="comment-text">정답 양배추의 효능 13가지</div>
-        </div>
+                <div class="comment-writer">{{ user.first_name }}</div>
+                <div class="comment-date">{{ comment.date | date:'m/d H:i' }}</div>
+            </div>    
+            <div class="comment-text">{{ comment }}</div>
+        </div>    
+        {% endfor %}
     </div>
     <dlv class="ad-banner"><img src="{% static 'images/img-sample-banner@2x.png' %}"></dlv>
 </body>
 </html>
 {% endblock %}
-
-<form>
-    <!--post_detail이란 게시글을 참조하는 코멘트 집합 전체를 순회하도록 만들자-->
-    {% for comment in comments %}
-        <p> {{ comment }} </p>
-        <p> {{ comment.date }} </p> <!-- models.py > Comment 클래스 > date 변수 -->
-        <hr>
-    {% endfor %}
-    </form>
-    
-    <!--댓글-->
-    <form method="POST">
-        {% csrf_token %}
-        {{ comment_form  }}
-        <input type="submit" value="댓글 입력">
-    </form>
 
