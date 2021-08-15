@@ -33,18 +33,17 @@
     <div class="comment-container">
         <div class="comment-stat">댓글</div>
         {% if user.is_authenticated %}
-        <div class="new-comment"></div>
-            <form method="POST">
-                {% csrf_token %}
-                {{ comment_form  }}
-                <input type="submit" value="댓글 입력">
-            </form>
+        <div class="new-comment">
+            <textarea class="new-comment-text" placeholder="댓글 쓰기 ..." maxlength="200"></textarea>
+            <input type="submit" class="new-comment-btn" value="등록">
         </div>
-        {% endif %}
+        {% endif%}
+     
 
         {% for comment in comments %}
         <div class="comments">
             <div class="comment-info">
+                <div class="comment-writer">익명의 부엉이</div>
                 <div class="comment-date">{{ comment.date | date:'m/d H:i' }}</div>
             </div>    
             <div class="comment-text">{{ comment }}</div>
