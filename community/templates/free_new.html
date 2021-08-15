@@ -17,8 +17,8 @@
     <div class="new-post">
         <div class="board-name">자유게시판</div>
         <form action="{% url 'create' %}">
-            <input type="text" name="title" placeholder="제목 입력" class="title-input">
-            <textarea name="body" placeholder="외대생들의 온라인 놀이터, 훕스라이브" class="main-input"></textarea>
+            <input type="text" name="title" placeholder="제목 입력" class="title-input" value={{post_detail.title}}>
+            <textarea name="body" placeholder="외대생들의 온라인 놀이터, 훕스라이브" class="main-input">{{post_detail.body}}</textarea>
             <div class="new-post-btn">
                 <div class="error-message">{{error}}</div>
                 <a href="javascript:history.back();">취소</a>

@@ -320,7 +320,7 @@ def create(request):
     community.pub_date = timezone.datetime.now()
 
     if (community.title == '') or (community.body == ''):
-        return render(request, 'free_new.html', {'error': '제목과 본문을 모두 입력해주세요'})
+        return render(request, 'free_new.html', {'post_detail': community,'error': '제목과 본문을 모두 입력해주세요'})
     else:
         community.save()
         return redirect('/free/'+str(community.id))
@@ -333,7 +333,7 @@ def pr_create(request):
     community.pub_date = timezone.datetime.now()
 
     if (community.title == '') or (community.body == ''):
-        return render(request, 'pr_new.html', {'error': '제목과 본문을 모두 입력해주세요'})
+        return render(request, 'pr_new.html', {'pr': community, 'error': '제목과 본문을 모두 입력해주세요'})
     else:
         community.save()
         return redirect('/pr/'+str(community.id))
@@ -346,7 +346,7 @@ def information_create(request):
     community.pub_date = timezone.datetime.now()
 
     if (community.title == '') or (community.body == ''):
-        return render(request, 'information_new.html', {'error': '제목과 본문을 모두 입력해주세요'})
+        return render(request, 'information_new.html', {'information': community,'error': '제목과 본문을 모두 입력해주세요'})
     else:
         community.save()
         return redirect('/information/'+str(community.id))
@@ -359,7 +359,7 @@ def graduate_create(request):
     community.pub_date = timezone.datetime.now()
 
     if (community.title == '') or (community.body == ''):
-        return render(request, 'graduate_new.html', {'error': '제목과 본문을 모두 입력해주세요'})
+        return render(request, 'graduate_new.html', {'graduate': community, 'error': '제목과 본문을 모두 입력해주세요'})
     else:
         community.save()
         return redirect('/graduate/'+str(community.id))
