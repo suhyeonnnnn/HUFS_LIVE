@@ -112,6 +112,8 @@
 }
 .new-comment-text::placeholder{
     font-family: 'Noto Sans KR', sans-serif;
+    position: relative;
+    top: -4px;
 }
 .new-comment-btn{
     position: absolute;
