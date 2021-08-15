@@ -45,7 +45,7 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('new_comment/<int:free_id>', community.views.new_comment, name='new_comment'),
 
-    path('update/<int:free_id>', community.views.update, name='free_update'),
+    path('free/update/<int:free_id>', community.views.update, name='free_update'),
     path('pr/update/<int:pr_id>', community.views.pr_update, name="pr_update"),
     path('information/update/<int:information_id>', community.views.information_update, name="information_update"),
     path('graduate/update/<int:graduate_id>', community.views.graduate_update, name="graduate_update"),
