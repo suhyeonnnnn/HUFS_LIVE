@@ -19,7 +19,7 @@
                     <div class="my-nickname">{{ user.first_name }}</div>
                     <span>님</span>
                 </div>
-                <a href="{% url 'my_page' %}" class="mypage-btn"><img src="{% static 'images/button-header-mypage@2x.png' %}"></a>
+                <a href="#" class="mypage-btn"><img src="{% static 'images/button-header-mypage@2x.png' %}"></a>
                 <a href="javascript:{document.getElementById('logout').submit()}" class="logout-btn">로그아웃</a>
                 <form id="logout" method="POST" action="{% url 'logout' %}">
                     {% csrf_token %} <input type="hidden" />
@@ -31,10 +31,10 @@
             </div>
         </div>
         <div class="nav-bar1">
-            <a href="{% url 'free_board' %}" class="{% if request.path == '/free/' %}cur-url{% endif %}">자유게시판</a>
-            <a href="{% url 'pr_board' %}" class="{% if request.path == '/pr/' %}cur-url{% endif %}">홍보게시판</a>
-            <a href="{% url 'information_board' %}" class="{% if request.path == '/information/' %}cur-url{% endif %}">정보게시판</a>
-            <a href="{% url 'graduate_board' %}" class="{% if request.path == '/graduate/' %}cur-url{% endif %}">졸업생게시판</a>
+            <a href="{% url 'free_board' %}" class="{% if '/free/' in request.path %}cur-url{% endif %}">자유게시판</a>
+            <a href="{% url 'pr_board' %}" class="{% if '/pr/' in request.path %}cur-url{% endif %}">홍보게시판</a>
+            <a href="{% url 'information_board' %}" class="{% if '/information/' in request.path %}cur-url{% endif %}">정보게시판</a>
+            <a href="{% url 'graduate_board' %}" class="{% if '/graduate/' in request.path %}cur-url{% endif %}">졸업생게시판</a>
         </div>
     </header>
     <section class="section">

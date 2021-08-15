@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+
 .section{
     display: flex;
     flex-direction: column;
@@ -108,6 +110,9 @@
     box-sizing: border-box;
     resize: none;
 }
+.new-comment-text::placeholder{
+    font-family: 'Noto Sans KR', sans-serif;
+}
 .new-comment-btn{
     position: absolute;
     background: #3253BF 0% 0% no-repeat padding-box;
@@ -129,6 +134,8 @@
     display: flex;
     flex-direction: column;
     padding: 10px 30px 10px 20px;
+    margin: 0 auto;
+    width: 1280px;
 }
 .comment-info{
     display: flex;
@@ -137,11 +144,12 @@
     font-size: 14px;
     font-weight: 500;
     color: #404040;
+    margin-right: 10px;
 }
 .comment-date{
     font-size: 14px;
     color: #8D8D8D;
-    margin-left: 10px;
+    width: 90px;
 }
 .comment-text{
     font-size: 16px;
