@@ -312,14 +312,18 @@ def information_new(request):
 def graduate_new(request):
     return render(request, 'graduate_new.html')
 
-def create(request): #new.html의 form에서 입력받은 내용을 DB로 넣어주는 함수
+def create(request): 
     community = Post()
     community.author = request.user
     community.title = request.GET['title']
     community.body = request.GET['body']
     community.pub_date = timezone.datetime.now()
-    community.save() #객체에 해당하는 내용들을 /admin 에 저장
-    return redirect('/free/'+str(community.id)) #글 작성을 완료하면 해당 글 detail이 뜨도록
+
+    if (community.title == '') or (community.body == ''):
+        return render(request, 'free_new.html', {'error': '제목과 본문을 모두 입력해주세요'})
+    else:
+        community.save()
+        return redirect('/free/'+str(community.id))
 
 def pr_create(request): 
     community = Pr()
@@ -327,8 +331,12 @@ def pr_create(request):
     community.title = request.GET['title']
     community.body = request.GET['body']
     community.pub_date = timezone.datetime.now()
-    community.save() 
-    return redirect('/pr/'+str(community.id)) 
+
+    if (community.title == '') or (community.body == ''):
+        return render(request, 'pr_new.html', {'error': '제목과 본문을 모두 입력해주세요'})
+    else:
+        community.save()
+        return redirect('/pr/'+str(community.id))
 
 def information_create(request): 
     community = Information()
@@ -336,8 +344,12 @@ def information_create(request):
     community.title = request.GET['title']
     community.body = request.GET['body']
     community.pub_date = timezone.datetime.now()
-    community.save() 
-    return redirect('/information/'+str(community.id)) 
+
+    if (community.title == '') or (community.body == ''):
+        return render(request, 'information_new.html', {'error': '제목과 본문을 모두 입력해주세요'})
+    else:
+        community.save()
+        return redirect('/information/'+str(community.id))
 
 def graduate_create(request): 
     community = Graduate()
@@ -345,8 +357,12 @@ def graduate_create(request):
     community.title = request.GET['title']
     community.body = request.GET['body']
     community.pub_date = timezone.datetime.now()
-    community.save() 
-    return redirect('/graduate/'+str(community.id)) 
+
+    if (community.title == '') or (community.body == ''):
+        return render(request, 'graduate_new.html', {'error': '제목과 본문을 모두 입력해주세요'})
+    else:
+        community.save()
+        return redirect('/graduate/'+str(community.id))
 
 # 댓글 저장
 def new_comment(request, free_id) : 
@@ -380,8 +396,11 @@ def update(request, free_id):
     if request.method == "POST":
         post.title = request.POST["title"]
         post.body = request.POST["body"]
-        post.save()
-        return redirect('free_detail', post.id)
+        if (post.title == '') or (post.body == ''):
+            return render(request, 'free_update.html', {'post_detail': post, 'error': '제목과 본문을 모두 입력해주세요'})
+        else:
+            post.save()
+            return redirect('free_detail', post.id)
     return render(request, 'free_update.html', {'post_detail': post})
 
 def pr_update(request, pr_id):
@@ -389,8 +408,11 @@ def pr_update(request, pr_id):
     if request.method == "POST":
         pr.title = request.POST["title"]
         pr.body = request.POST["body"]
-        pr.save()
-        return redirect('pr_detail', pr.id)
+        if (pr.title == '') or (pr.body == ''):
+            return render(request, 'pr_update.html', {'pr': pr, 'error': '제목과 본문을 모두 입력해주세요'})
+        else:
+            pr.save()
+            return redirect('pr_detail', pr.id)
     return render(request, 'pr_update.html', {'pr': pr})
 
 def information_update(request, information_id):
@@ -398,8 +420,11 @@ def information_update(request, information_id):
     if request.method == "POST":
         information.title = request.POST["title"]
         information.body = request.POST["body"]
-        information.save()
-        return redirect('information_detail', information.id)
+        if (information.title == '') or (information.body == ''):
+            return render(request, 'information_update.html', {'information': information, 'error': '제목과 본문을 모두 입력해주세요'})
+        else:
+            information.save()
+            return redirect('information_detail', information.id)
     return render(request, 'information_update.html', {'information': information})
 
 def graduate_update(request, graduate_id):
@@ -407,8 +432,11 @@ def graduate_update(request, graduate_id):
     if request.method == "POST":
         graduate.title = request.POST["title"]
         graduate.body = request.POST["body"]
-        graduate.save()
-        return redirect('graduate_detail', graduate.id)
+        if (graduate.title == '') or (graduate.body == ''):
+            return render(request, 'graduate_update.html', {'graduate': graduate, 'error': '제목과 본문을 모두 입력해주세요'})
+        else:
+            graduate.save()
+            return redirect('graduate_detail', graduate.id)
     return render(request, 'graduate_update.html', {'graduate': graduate})
 
 
