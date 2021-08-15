@@ -17,8 +17,8 @@
     <div class="new-post">
         <div class="board-name">홍보게시판</div>
         <form action="{% url 'pr_create' %}">
-            <input type="text" name="title" placeholder="제목 입력" class="title-input">
-            <textarea name="body" placeholder="외대생들의 온라인 놀이터, 훕스라이브" class="main-input"></textarea>
+            <input type="text" name="title" placeholder="제목 입력" class="title-input" value={{pr.title}}>
+            <textarea name="body" placeholder="외대생들의 온라인 놀이터, 훕스라이브" class="main-input">{{pr.body}}</textarea>
             <div class="new-post-btn">
                 <div class="error-message">{{error}}</div>
                 <a href="javascript:history.back();">취소</a>
