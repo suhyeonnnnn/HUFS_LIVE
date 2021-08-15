@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+
 .section{
     display: flex;
     flex-direction: column;
@@ -107,6 +109,9 @@
     padding: 20px 110px 20px 20px;
     box-sizing: border-box;
     resize: none;
+}
+.new-comment-text::placeholder{
+    font-family: 'Noto Sans KR', sans-serif;
 }
 .new-comment-btn{
     position: absolute;
