@@ -19,7 +19,7 @@
                     <div class="my-nickname">{{ user.first_name }}</div>
                     <span>님</span>
                 </div>
-                <a href="{% url 'my_page' %}" class="mypage-btn"><img src="{% static 'images/button-header-mypage@2x.png' %}"></a>
+                <a href="#" class="mypage-btn"><img src="{% static 'images/button-header-mypage@2x.png' %}"></a>
                 <a href="javascript:{document.getElementById('logout').submit()}" class="logout-btn">로그아웃</a>
                 <form id="logout" method="POST" action="{% url 'logout' %}">
                     {% csrf_token %} <input type="hidden" />
