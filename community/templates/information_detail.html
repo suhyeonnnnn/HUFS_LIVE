@@ -26,7 +26,7 @@
         <div class="post-btn">
             {% if information_detail.author == user %}
             <a href="{% url 'information_update' information_detail.id %}" class="update-btn"><img src="{% static 'images/Iconly-Light-Edit@2x.png' %}">수정하기</a>
-            <a href="{% url 'information_update' information_detail.id %}" class="delete-btn"><img src="{% static 'images/Iconly-Light-Delete@2x.png' %}">삭제하기</a>
+            <a href="{% url 'information_delete' information_detail.id %}" class="delete-btn" onclick="if(!confirm('게시글을 삭제하시겠습니까?')){return false;}"><img src="{% static 'images/Iconly-Light-Delete@2x.png' %}">삭제하기</a>
             {% endif %}
         </div>
     </div>
