@@ -12,24 +12,52 @@ class PostForm(forms.ModelForm):
 
 #댓글 작성
 class CommentForm(forms.ModelForm):
+    comment = forms.CharField(
+        label='',
+        widget = forms.Textarea(attrs={
+                'class': "new-comment-text",
+                'placeholder' : "댓글 쓰기 ...",
+                'maxlength' : "200",
+                }))
     class Meta:
         model = Comment
         fields = ['comment']
 
 #홍보게시판 댓글 작성
 class PrCommentForm(forms.ModelForm):
+    comment = forms.CharField(
+        label='',
+        widget = forms.Textarea(attrs={
+                'class': "new-comment-text",
+                'placeholder' : "댓글 쓰기 ...",
+                'maxlength' : "200",
+                }))
     class Meta:
         model = PrComment
         fields = ['comment']
 
 #졸업생게시판 댓글 작성
 class GradCommentForm(forms.ModelForm):
+    comment = forms.CharField(
+        label='',
+        widget = forms.Textarea(attrs={
+                'class': "new-comment-text",
+                'placeholder' : "댓글 쓰기 ...",
+                'maxlength' : "200",
+                }))
     class Meta:
         model = GradComment
         fields = ['comment']
 
 #정보게시판 댓글 작성
 class InfoCommentForm(forms.ModelForm):
+    comment = forms.CharField(
+        label='',
+        widget = forms.Textarea(attrs={
+                'class': "new-comment-text",
+                'placeholder' : "댓글 쓰기 ...",
+                'maxlength' : "200",
+                }))
     class Meta:
         model = InfoComment
         fields = ['comment']
