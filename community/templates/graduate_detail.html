@@ -38,8 +38,12 @@
         <div class="comment-stat">댓글</div>
         {% if user.is_authenticated %}
         <div class="new-comment">
-            <textarea class="new-comment-text" placeholder="댓글 쓰기 ..." maxlength="200"></textarea>
-            <input type="submit" class="new-comment-btn" value="등록">
+            <form method="POST">
+                {% csrf_token %}
+                {{ comment_form  }}
+                <input type="submit" class="new-comment-btn" value="등록">
+            </form>
+
         </div>
         {% endif%}
      
